@@ -2,17 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var EventSchema = new Schema ({
-  eventName: String,
-  description: String,
-  location: String,
-  category: String, //dropdown menu with pre-made selections
-  startDate: String,
-  endDate: String,
-  startTime: String,
-  endTime: String,
-  peopleInterested: 0,
-  externalResources: [ String ] //show as links
-  keywords: [ String ] //searchable
+  eventName: String, //req
+  description: String, //req
+  location: String, //req, will show on google maps.
+  date: String,
+  time: String,
+  peopleInterested: { type: Number, default: 0 }, //will update with a counter when people click on "interested" button
+  externalResource: { type: String, default: '' },
+  keywords: [ String ] //searchable . required.
 );
 
 //our model to create events
