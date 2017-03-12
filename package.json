@@ -1,0 +1,30 @@
+{
+  "name": "project1-eventapp",
+  "version": "1.0.0",
+  "description": "An app created for the tech community in which a user can explore, create, update, and delete upcoming events. ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwiley322/Project1-EventApp.git"
+  },
+  "keywords": [
+    "events",
+    "tech",
+    "community"
+  ],
+  "author": "Megan Wiley and Lamar Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwiley322/Project1-EventApp/issues"
+  },
+  "homepage": "https://github.com/mwiley322/Project1-EventApp#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.8.7"
+  }
+}
