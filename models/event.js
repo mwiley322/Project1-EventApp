@@ -9,7 +9,8 @@ var EventSchema = new Schema ({
   time: String,
   peopleInterested: { type: Number, default: 0 }, //will update with a counter when people click on "interested" button
   externalResource: { type: String, default: '' },
-  keywords: [ String ] //searchable . required.
+  keywords: [ String ], //searchable . required.
+  imageUrl: String
 );
 
 //our model to create events
