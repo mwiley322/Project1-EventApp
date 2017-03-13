@@ -32,7 +32,7 @@ app.get('/api/events', controllers.events.index);
 //
 // //create an event
 // app.post('/api/events', controllers.event.create);
-// 
+//
 // //update one event
 // app.put('/api/events/:id', controllers.event.update);
 //
