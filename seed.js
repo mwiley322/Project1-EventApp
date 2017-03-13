@@ -3,7 +3,7 @@ var db = require("./models");
 
 var eventData = [];
 eventData.push({
-          eventName: 'JavaScript For Beginners'
+          eventName: 'JavaScript For Beginners',
           description: 'Learn javascript fundamentals',
           location: 'San Francisco, California',
           category: 'Javascript', //dropdown menu with pre-made selections
@@ -11,10 +11,10 @@ eventData.push({
           time: '1:00pm',
           externalResource: 'www.Stackoverflow.com' , //show as links
           imageUrl: 'http://www.b2bweb.fr/wp-content/uploads/js-logo-badge-256.png',
-          keywords: ['javascript', 'san francisco', 'beginners', 'code', 'front end', 'developer', ] //searchable
+          keywords: ['javascript', 'san francisco', 'beginners', 'code', 'front end', 'developer'] //searchable
         });
 eventData.push({
-          eventName: 'Learn HTML & CSS'
+          eventName: 'Learn HTML & CSS',
           description: 'Learn the structure of web design',
           location: 'Berkeley, California',
           date: '2017, May 17',
@@ -23,7 +23,7 @@ eventData.push({
           keywords: ['html', 'bay area', 'beginners', 'code', 'front end', 'developer', 'css', 'web design', 'style'] //searchable
         });
 eventData.push({
-          eventName: 'Technical Interview Prep'
+          eventName: 'Technical Interview Prep',
           description: 'Get a better understanding of Javascript, different interview strategies, and considerations',
           location: 'San Jose, California',
           category: 'Javascript', //dropdown menu with pre-made selections
@@ -36,10 +36,10 @@ eventData.push({
 
 
 db.Event.remove({}, function(err, events) {
-  db.Event.create(eventsList, function(err, events) {
+  db.Event.create(eventData, function(err, events) {
     if (err) {  return console.log('ERROR', err);  }
-    console.log("all events:", events);
-    console.log("created", events.length, "events");
+    console.log("all events: ", events);
+    console.log("created ", eventData.length, " events");
     process.exit();
   }); //closes create function
 }); //closes remove function
