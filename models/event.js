@@ -14,7 +14,7 @@ var EventSchema = new Schema ({
 });
 
 //our model to create events
-var Event = mongoose.model('Event', eventSchema);
+var Event = mongoose.model('Event', EventSchema);
 
 //to use elsewhere in our app
 module.exports = Event;
