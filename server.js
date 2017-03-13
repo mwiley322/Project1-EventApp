@@ -26,13 +26,13 @@ app.get('/api', controllers.api.index);
 
 //get all events
 app.get('/api/events', controllers.events.index);
+
+//get one event
+app.get('/api/events/:id', controllers.events.show);
+
+//create an event
+app.post('/api/events', controllers.events.create);
 //
-// //get one event
-// app.get('/api/events/:id', controllers.event.show);
-//
-// //create an event
-// app.post('/api/events', controllers.event.create);
-// 
 // //update one event
 // app.put('/api/events/:id', controllers.event.update);
 //
