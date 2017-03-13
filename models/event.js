@@ -11,7 +11,7 @@ var EventSchema = new Schema ({
   externalResource: { type: String, default: '' },
   keywords: [ String ], //searchable . required.
   imageUrl: String
-);
+});
 
 //our model to create events
 var Event = mongoose.model('Event', eventSchema);
