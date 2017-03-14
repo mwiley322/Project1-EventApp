@@ -59,14 +59,14 @@
                     </div>
                     <!-- Text input for date-->
                     <div class="form-group">
-                      <label for="eventDate" class="col-form-label">Date</label>
+                      <label for="eventDate" class="col-md-4 control-label">Event Date</label>
                       <div class="col-md-4">
                         <input class="form-control" type="date" name="date" value="2017-08-19" id="eventDate">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="eventTime">Time</label>
+                      <label class="col-md-4 control-label" for="eventTime">Event Time</label>
                       <div class="col-md-4">
                         <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md">
                       </div>
@@ -78,12 +78,10 @@
                         <input id="externalResource" name="externalResource" type="text" value="www.facebook.com" class="form-control input-md">
                       </div>
                     </div>
-                    <!-- text input for event image-->
+                    <!-- file input for event image-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="imageUrl">Image URL</label>
-                      <div class="col-md-4">
-                        <input id="imageUrl" name="imageUrl" type="text" value="www.placeholder.com" class="form-control input-md">
-                      </div>
+                      <label for="imageUrl" class="col-md-4 control-label">Event Image Upload</label>
+                        <input type="file" class="col-md-4" id="imageUrl" name="imageUrl">
                     </div>
                     <!-- Textarea for description-->
                     <div class="form-group">
@@ -104,10 +102,6 @@
     </div>
     <!-- NAV LINKS -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-      </ul>
       <!-- SEARCH FORM AND SUBMIT  -->
       <form class="navbar-form navbar-middle" role="search">
         <div class="form-group">
