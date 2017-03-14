@@ -46,7 +46,7 @@ sampleKeywords.push({
 
 
 sampleKeywords.push({
-    name: "Css"
+    name: "CSS"
 });
 
 
@@ -71,7 +71,7 @@ sampleKeywords.push({
 
 
 sampleKeywords.push({
-    name: 'Html'
+    name: 'HTML'
 });
 
 sampleKeywords.push({
