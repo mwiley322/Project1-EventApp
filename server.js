@@ -30,9 +30,9 @@ app.get('/api/events', controllers.events.index);
 //get one event
 app.get('/api/events/:id', controllers.events.show);
 
-//create an event
-// app.post('/api/events', controllers.events.create);
-//
+// create an event
+app.post('/api/events', controllers.events.create);
+
 // //update one event
 // app.put('/api/events/:id', controllers.event.update);
 //
