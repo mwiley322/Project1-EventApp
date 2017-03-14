@@ -3,11 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>tech space</title>
-      <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="../scripts/bootstrap-datepicker.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="../scripts/app.js"></script>
+      <link rel="stylesheet" href="../styles/styles.css">
+      <link rel="stylesheet" href="../styles/datepicker.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
   </head>
   <body>
@@ -69,7 +73,7 @@
                     <div class="row">
                       <label for="eventDate" class="col-md-4 control-label">Event Date and Time</label>
                       <div class="col-md-4">
-                        <input class="form-control" type="date" name="date" value="2017-08-19" id="eventDate">
+                        <input class="form-control" type="date" name="date" id="eventDate">
                       </div>
                   <!-- Text input for time-->
                       <div class="col-md-4">
@@ -87,7 +91,7 @@
                   <!-- file input for event image-->
                   <div class="form-group">
                     <label for="imageUrl" class="col-md-4 control-label">Event Image Upload</label>
-                      <input type="file" class="col-md-4" id="imageUrl" name="imageUrl">
+                      <input type="file" class="col-md-4" id="imageUrl" onchange="onFileSelected(event)" name="imageUrl">
                   </div>
                   <!-- Textarea for description-->
                   <div class="form-group">
@@ -107,19 +111,17 @@
       </div>
   </div>
   </nav>
-  <!-- EVENT BOXES -->
+
   <div class="container">
-  <div class="col-lg-9 col-md-9 col-xs-12 eventContainer">
-    <!--event info displayed here-->
-  </div>
-  <!--SIDE BAR -->
+    <!-- EVENT BOXES -->
+    <div class="col-lg-9 col-md-9 col-xs-12 eventContainer">
+      <!--event info displayed here-->
+    </div>
+    <!--SIDE BAR -->
     <div class="col-lg-3 col-md-3 sidebar">
-      <p> Content </p>
+      <div id="datepicker"></div>
     </div>
   </div>
   </body>
   <!-- VENDOR SCRIPTS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../scripts/app.js"></script>
 </html>
