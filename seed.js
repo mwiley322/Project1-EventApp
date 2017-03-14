@@ -41,7 +41,7 @@ eventData.push({
 var sampleKeywords = [];
 
 sampleKeywords.push({
-    name: 'Javascript'
+    name: 'JavaScript'
 });
 
 
