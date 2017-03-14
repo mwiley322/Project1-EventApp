@@ -1,11 +1,11 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var KeyWordSchema = new Schema({
+var KeywordSchema = new Schema({
     name: String
 
 });
 
-var KeyWord = mongoose.model('KeyWord', KeyWordSchema);
+var Keyword = mongoose.model('Keyword', KeywordSchema);
 
-module.exports = KeyWord;
+module.exports = Keyword;
