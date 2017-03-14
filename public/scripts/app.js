@@ -3,6 +3,6 @@ $(document).ready(function() {
 
   $.ajax({
     method: 'GET',
-    url: '/api/event',
+    url: '/api/events',
     success: renderMultipleEvents
   });
