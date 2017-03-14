@@ -81,7 +81,17 @@ function renderEvent(event, keyword) {
                         <div class="modal-body">
                           <form class="form-horizontal">
                             <fieldset>
-                            Hello
+
+                        <ul class="pull-right" style="list-style-type:none">
+                        <li><b>Event Name:</b>Text Here</li>
+                        <li><b>Location:</b>City, State</li>
+                        <li><b>Date:</b> 02/20/2017</li>
+                        <li><b>Time:</b> 8:00</li>
+                        </ul>
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQaVz3lAJ2zFCc52NKlX6bTjajPRrzcFqQ15FB5Vd6G5sisWS2Vw4cWHPs" alt="event image">
+                            <hr>
+                            <b>Description:</b>
+                            <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
                             </fieldset>
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
