@@ -23,13 +23,12 @@ function show(req, res) {
 
 // POST /api/events
 function create(req, res) {
-  var newEvent = new Event(req.body);
-  db.Event.save(function (err, createdEvent) {
-    if (err) { console.log('err: ', err);
-      res.send(err); }
-    console.log('event created: ', createdEvent);
+  var newEvent = new db.Event(req.body);
+  db.Event.create(newEvent, function(err, createdEvent) {
+    if(err){return console.log(err);}
+    console.log('made new event: ', createdEvent);
     res.json(createdEvent);
-  }); //closes save function
+  });
 }//closes create function
 
 module.exports = {
