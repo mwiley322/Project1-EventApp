@@ -97,8 +97,8 @@ sampleKeywords.push({
 
 
 // add all keywords to each event
-eventData.forEach(function(events) {
-    events.keyword = sampleKeywords;
+eventData.forEach(function(event) {
+    event.keywords = sampleKeywords;
 }); // closes keyword function
 
 db.Event.remove({}, function(err, events) {
