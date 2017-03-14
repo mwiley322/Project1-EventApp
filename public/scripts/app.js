@@ -1,7 +1,7 @@
-//need to add loop through keywords
+console.log('app.js is loaded!');
 
 $(document).ready(function() {
-  console.log('app.js loaded!');
+  console.log('dom is loaded!');
 
     $.ajax({
       method: 'GET',
@@ -10,16 +10,22 @@ $(document).ready(function() {
       error: handleError
     }); //closes ajax get request
 
-    $('#createEvent').on('click', function postNewEvent(e) {
-      e.preventDefault();
-      var formData = $(this).serialize(); //translates request
-      console.log('here is the form data: ', formData);
-        $.post('/api/events', formData, function(event) {
-          console.log('event to post: ', event);
-          renderAlbum(album);
-        }); //closes ajax post request
-    renderEvent(event);
-    }); //closes postNewEvent function
+    $('#createEvent').on('click', handleNewEventSubmit);
+
+    // $('#createEvent').on('submit', function postNewEvent(e) {
+    //   e.preventDefault();
+    //   // var formData = {thing: value, doohickey: with another value}; //translates request
+    //   console.log('here is the form data: ', formData);
+    //     // BODY - so we need to access it in the server via req.body
+    //     $.post('/api/events', formData, function(event) {
+    //       console.log('event to post: ', event);
+    //       renderEvent(event);
+    //     }); //closes ajax post request
+    //   $('form').trigger('reset');
+    // }); //closes postNewEvent function
+
+
+
 
 }); //closes DOM ready function
 
@@ -29,15 +35,13 @@ function renderMultipleEvents(events) {
   }); //closes foreach
 }//closes rendermult.
 
-function renderEvent(event, keyword) {
+function renderEvent(event) {
   var keyWordArray = event.keywords;
   keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
     return keyWord.name;
   });
   event.keywords = keyWordArray.join(', ');
   var eventHtml = (`
-    <div class="row event">
-      <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-body">
           <!-- begin event internal row -->
@@ -148,12 +152,57 @@ function renderEvent(event, keyword) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+
+
     <!-- end one event -->
   `);
   $('.eventContainer').prepend(eventHtml);
 }
+
+
+function handleNewEventSubmit(e) {
+  e.preventDefault();
+  var $newEventModal = $('#newEventModal');
+  var $name = $newEventModal.find('#name');
+  var $eventLocation = $newEventModal.find('#eventLocation');
+  var $eventDate = $newEventModal.find('#eventDate');
+  var $email = $newEventModal.find('#posterEmail');
+  var $links = $newEventModal.find('#externalResource');
+  var $imageUrl = $newEventModal.find('#imageUrl');
+  var $desc = $newEventModal.find('#eventDescription');
+  var $eventTime= $newEventModal.find('#eventTime');
+  // get data from modal fields
+  var dataToPost = {
+    eventName: $name.val(),
+    location: $eventLocation.val(),
+    date: $eventDate.val(),
+    time: $eventTime.val(),
+    posterEmail: $email.val(),
+    externalResource: $links.val(),
+    description: $desc.val(),
+    imageUrl: $imageUrl.val()
+  };
+  // var eventId = $newEventModal.data('eventId');
+  console.log('retrieved new event!', dataToPost);
+  // POST to SERVER
+  // var eventPostToServerUrl = '/api/event/'+ eventId + '/events';
+    $.post('/api/events', dataToPost, function(data) {
+      console.log('received data from post to /events:', data);
+      // clear form
+      $name.val('');
+      $eventLocation.val('');
+      $eventDate.val('');
+      $eventTime.val('');
+      $email.val('');
+      $links.val('');
+      $desc.val('');
+      $imageUrl.val('');
+      // close modal
+      $newEventModal.modal('hide');
+      renderEvent(data);
+    }); //closes post request
+} //closes function
+
 
 function handleError(err) {
  console.log('error loading events!: ', err);
