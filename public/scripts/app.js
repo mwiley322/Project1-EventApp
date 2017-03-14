@@ -52,8 +52,11 @@ function renderEvent(event, keyword) {
                   </li>
                   <li class="list-group-item">
                     <span class='eventLocation'>${event.location}</span>
+
+                    <span class='eventTime pull-right'>&#160;${event.time}</span>
+                    <span class='eventDate pull-right'>${event.date}</span>
                     <span class='eventTime pull-right'>- ${event.time}</span>
-                    <span class='eventDate pull-right'>${event.date} -</span>
+                    <span class='eventDate pull-right'>${event.date} -</sp
 
                   </li>
                   <li class="list-group-item">
@@ -80,6 +83,40 @@ function renderEvent(event, keyword) {
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
+
+                          <div class="row event">
+                            <div class="col-md-10 col-md-offset-1">
+                              <div class="panel panel-default">
+                                <div class="panel-body">
+                                <!-- begin event internal row -->
+                                  <div class='row'>
+                                    <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                                      <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
+                                    </div>
+                                    <div class="col-md-9 col-xs-12">
+                                      <ul class="list-group">
+                                        <li class="list-group-item">
+                                          <h4 class='inline-header'>${event.eventName}</h4>
+                                        </li>
+                                        <li class="list-group-item">
+                                          <span class='eventLocation'>${event.location}</span>
+                                          <span class='eventTime pull-right'>&#160;${event.time}</span>
+
+                                          <span class='eventDate pull-right'>${event.date}</span>
+
+                                        </li>
+                                        <li class="list-group-item">
+                                          <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                          <span class='event-date'>19 people interested</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                          <h4 class="inline-header">Keywords:</h4>
+                                          <span class='event-keywords'>${event.keywords}</span>
+                                        </li>
+                                      </ul>
+
                             <fieldset>
 
                         <ul class="pull-right" style="list-style-type:none">
@@ -93,6 +130,7 @@ function renderEvent(event, keyword) {
                             <b>Description:</b>
                             <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
                             </fieldset>
+
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
@@ -106,7 +144,7 @@ function renderEvent(event, keyword) {
               </div>
             </div>
             <!-- end of event internal row -->
-            <div class='panel-footer'>
+
             </div>
           </div>
         </div>
