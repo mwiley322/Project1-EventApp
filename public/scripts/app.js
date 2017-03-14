@@ -37,8 +37,8 @@ function renderEvent(event, keyword) {
           <div class="panel-body">
           <!-- begin event internal row -->
             <div class='row'>
-              <div class="col-md-3 col-xs-12 thumbnail event-art">
-                <img src="images/800x800.png" alt="event image">
+              <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                <img src="${event.imageUrl}" class="responsive-img" alt="event image">
               </div>
               <div class="col-md-9 col-xs-12">
                 <ul class="list-group">
@@ -67,22 +67,21 @@ function renderEvent(event, keyword) {
                     Learn more
                   </button>
                   <!-- Modal -->
-                  <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <legend class="modal-title" id="learnMoreLabel">${event.eventName}</legend>
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
                             <fieldset>
                             Hello
+                            </fieldset>
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
                       </div>
-                    </fieldset>
                     </div>
                   </div>
               </div>
