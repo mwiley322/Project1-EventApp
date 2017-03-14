@@ -45,7 +45,7 @@ function renderEvent(event, keyword) {
                   </li>
                   <li class="list-group-item">
                     <h4 class="inline-header">Keywords:</h4>
-                    <span class='event-keywords'>${event.keyword.name}</span>
+                    <span class='event-keywords'>${event.keywords}</span>
                   </li>
                 </ul>
               </div>
