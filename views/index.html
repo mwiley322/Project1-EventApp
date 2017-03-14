@@ -40,42 +40,49 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="name">Event Name</label>
                       <div class="col-md-4">
-                        <input id="name" name="eventName" type="text" placeholder="JavaScript for Beginners" class="form-control input-md" required="">
+                        <input id="name" name="eventName" type="text" value="JavaScript for Beginners" class="form-control input-md" required="">
                       </div>
                     </div>
                     <!-- Text input for location-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="artistName">Location</label>
+                      <label class="col-md-4 control-label" for="eventLocation">Location</label>
                       <div class="col-md-4">
-                        <input id="textinput" name="location" type="text" placeholder="Golden Gate Park San Francisco,CA" class="form-control input-md">
+                        <input id="eventLocation" name="location" type="text" value="Golden Gate Park San Francisco,CA" class="form-control input-md">
+                      </div>
+                    </div>
+                    <!-- Text input for location-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="posterEmail">Your email address</label>
+                      <div class="col-md-4">
+                        <input id="posterEmail" name="posterEmail" type="text" value="mwiley322@gmail.com" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for date-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="eventDate">Date</label>
+                      <label for="eventDate" class="col-form-label">Date</label>
                       <div class="col-md-4">
-                        <input id="eventDate" name="date" type="text" placeholder="03/22/2017" class="form-control input-md">
+                        <input class="form-control" type="date" name="date" value="2017-08-19" id="eventDate">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="time">Time</label>
+                      <label class="col-md-4 control-label" for="eventTime">Time</label>
                       <div class="col-md-4">
-                        <input id="eventTime" name="time" type="text" placeholder="4:00PM" class="form-control input-md">
+                        <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="externalResource">External Links for Event</label>
                       <div class="col-md-4">
-                        <input id="externalResource" name="externalResource" type="text" placeholder="optional" class="form-control input-md">
+                        <input id="externalResource" name="externalResource" type="text" value="www.facebook.com" class="form-control input-md">
                       </div>
                     </div>
-                    <!-- Text input for time-->
+                    <!-- text input for event image-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="eventImage">Image URL</label>
+                      <label class="col-md-4 control-label" for="imageUrl">Image URL</label>
                       <div class="col-md-4">
-                        <input id="eventImage" name="imageUrl" type="text" placeholder="url here" class="form-control input-md">
+                        <input id="imageUrl" name="imageUrl" type="text" value="www.placeholder.com" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Textarea for description-->
@@ -85,12 +92,9 @@
                         <textarea class="form-control" id="eventDescription" name="description" placeholder="What is the event about?"></textarea>
                       </div>
                     </div>
-
-                    </div>
-              <div class="modal-footer">
+              <div class="form-group modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button id="createEvent" name="singlebutton" class="btn btn-primary">Submit</button>
-
+                <button id="createEvent" name="singlebutton" class="btn btn-primary" data-dismiss="modal">Submit</button>
               </div>
             </div>
           </fieldset>
