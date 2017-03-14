@@ -12,22 +12,14 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
-    // $('#createEvent').on('submit', function postNewEvent(e) {
-    //   e.preventDefault();
-    //   // var formData = {thing: value, doohickey: with another value}; //translates request
-    //   console.log('here is the form data: ', formData);
-    //     // BODY - so we need to access it in the server via req.body
-    //     $.post('/api/events', formData, function(event) {
-    //       console.log('event to post: ', event);
-    //       renderEvent(event);
-    //     }); //closes ajax post request
-    //   $('form').trigger('reset');
-    // }); //closes postNewEvent function
-
-
-
-
+    $('#datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      multidate: true,
+      multidateSeparator: "-"
+    });
+    
 }); //closes DOM ready function
+
 
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
@@ -47,7 +39,7 @@ function renderEvent(event) {
           <!-- begin event internal row -->
             <div class='row'>
               <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
               </div>
               <div class="col-md-9 col-xs-12">
                 <ul class="list-group">
@@ -59,8 +51,6 @@ function renderEvent(event) {
 
                     <span class='eventTime pull-right'>&#160;${event.time}</span>
                     <span class='eventDate pull-right'>${event.date}</span>
-                    <span class='eventTime pull-right'>- ${event.time}</span>
-                    <span class='eventDate pull-right'>${event.date} -</sp
 
                   </li>
                   <li class="list-group-item">

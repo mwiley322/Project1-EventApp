@@ -1,15 +1,22 @@
 .jumbotron {
-  height: 10vw;
+  height: 12vw;
 }
 
 .eventContainer {
-  border: solid black 1px;
   overflow: scroll;
-  height: 33vw;
+  height: 40vw;
+  margin-bottom: 5vw;
 }
 
 .sidebar {
-  border: solid 1px black;
-  height: 33vw;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  height: 40vw;
   position: fixed;
+}
+
+#datepicker {
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  margin-top: .5vw;
 }
