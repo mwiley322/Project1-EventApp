@@ -52,8 +52,11 @@ function renderEvent(event, keyword) {
                   </li>
                   <li class="list-group-item">
                     <span class='eventLocation'>${event.location}</span>
+
                     <span class='eventTime pull-right'>&#160;${event.time}</span>
                     <span class='eventDate pull-right'>${event.date}</span>
+                    <span class='eventTime pull-right'>- ${event.time}</span>
+                    <span class='eventDate pull-right'>${event.date} -</sp
 
                   </li>
                   <li class="list-group-item">
@@ -80,6 +83,7 @@ function renderEvent(event, keyword) {
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
+
                           <div class="row event">
                             <div class="col-md-10 col-md-offset-1">
                               <div class="panel panel-default">
@@ -112,6 +116,21 @@ function renderEvent(event, keyword) {
                                           <span class='event-keywords'>${event.keywords}</span>
                                         </li>
                                       </ul>
+
+                            <fieldset>
+
+                        <ul class="pull-right" style="list-style-type:none">
+                        <li><b>Event Name:</b>Text Here</li>
+                        <li><b>Location:</b>City, State</li>
+                        <li><b>Date:</b> 02/20/2017</li>
+                        <li><b>Time:</b> 8:00</li>
+                        </ul>
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQaVz3lAJ2zFCc52NKlX6bTjajPRrzcFqQ15FB5Vd6G5sisWS2Vw4cWHPs" alt="event image">
+                            <hr>
+                            <b>Description:</b>
+                            <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
+                            </fieldset>
+
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
