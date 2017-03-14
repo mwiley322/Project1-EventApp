@@ -30,6 +30,11 @@ function renderMultipleEvents(events) {
 }//closes rendermult.
 
 function renderEvent(event, keyword) {
+  var keyWordArray = event.keywords;
+  keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
+    return keyWord.name;
+  });
+  event.keywords = keyWordArray.join(', ');
   var eventHtml = (`
     <div class="row event">
       <div class="col-md-10 col-md-offset-1">

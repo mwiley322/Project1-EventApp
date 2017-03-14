@@ -20,18 +20,14 @@
     </div>
   <!--NAV BAR-->
     <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-          +
-        </button>
+      <div class="navbar-header col-md-6">
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <legend class="modal-title" id="myModalLabel">Create a New Event</legend>
+                  <legend class="modal-title" id="newEventModalLabel">Create a New Event</legend>
               </div>
               <div class="modal-body">
                 <form class="form-horizontal">
@@ -39,36 +35,35 @@
                     <!-- Text input for Event Name-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="name">Event Name</label>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <input id="name" name="eventName" type="text" value="JavaScript for Beginners" class="form-control input-md" required="">
                       </div>
                     </div>
                     <!-- Text input for location-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="eventLocation">Location</label>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <input id="eventLocation" name="location" type="text" value="Golden Gate Park San Francisco,CA" class="form-control input-md">
                       </div>
                     </div>
-                    <!-- Text input for location-->
+                    <!-- Text input for poster's email-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="posterEmail">Your email address</label>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <input id="posterEmail" name="posterEmail" type="text" value="mwiley322@gmail.com" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for date-->
                     <div class="form-group">
-                      <label for="eventDate" class="col-md-4 control-label">Event Date</label>
-                      <div class="col-md-4">
-                        <input class="form-control" type="date" name="date" value="2017-08-19" id="eventDate">
-                      </div>
-                    </div>
+                      <div class="row">
+                        <label for="eventDate" class="col-md-4 control-label">Event Date and Time</label>
+                        <div class="col-md-4">
+                          <input class="form-control" type="date" name="date" value="2017-08-19" id="eventDate">
+                        </div>
                     <!-- Text input for time-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="eventTime">Event Time</label>
-                      <div class="col-md-4">
-                        <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md">
+                        <div class="col-md-4">
+                          <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md">
+                        </div>
                       </div>
                     </div>
                     <!-- Text input for time-->
@@ -90,26 +85,27 @@
                         <textarea class="form-control" id="eventDescription" name="description" placeholder="What is the event about?"></textarea>
                       </div>
                     </div>
+                  </fieldset>
               <div class="form-group modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 <button id="createEvent" name="singlebutton" class="btn btn-primary" data-dismiss="modal">Submit</button>
               </div>
             </div>
-          </fieldset>
         </form>
           </div>
         </div>
     </div>
-    <!-- NAV LINKS -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <!-- SEARCH FORM AND SUBMIT  -->
       <form class="navbar-form navbar-middle" role="search">
         <div class="form-group">
+          <!--button to trigger create new event modal-->
+          <button type="button" id="createNewEventBtn" class="btn btn-primary btn-md" data-toggle="modal" data-target="#newEventModal">
+            +
+          </button>
           <input type="text" class="form-control" placeholder="Search">
+          <button type="submit" class="btn btn-default">Submit</button>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
       </form>
-    </div>
   </nav>
   <!-- EVENT BOXES -->
   <div class="col-lg-9 col-md-9 col-xs-12 eventContainer">
