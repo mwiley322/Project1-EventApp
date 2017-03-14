@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>tech space</title>
-      <link rel="stylesheet" href="../public/styles/styles.css">
+      <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   </head>
   <body>
     <!--JUMBOTRON-->
@@ -16,7 +18,6 @@
         <p>dev events in your area!</p>
       </div>
     </div>
-
   <!--NAV BAR-->
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
@@ -51,30 +52,30 @@
                     </div>
                     <!-- Text input for date-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="releaseDate">Date</label>
+                      <label class="col-md-4 control-label" for="eventDate">Date</label>
                       <div class="col-md-4">
-                        <input id="releaseDate" name="date" type="text" placeholder="03/22/2017" class="form-control input-md">
+                        <input id="eventDate" name="date" type="text" placeholder="03/22/2017" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="releaseDate">Time</label>
+                      <label class="col-md-4 control-label" for="time">Time</label>
                       <div class="col-md-4">
-                        <input id="releaseDate" name="time" type="text" placeholder="4:00PM" class="form-control input-md">
+                        <input id="eventTime" name="time" type="text" placeholder="4:00PM" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="releaseDate">External Links for Event</label>
+                      <label class="col-md-4 control-label" for="externalResource">External Links for Event</label>
                       <div class="col-md-4">
-                        <input id="releaseDate" name="externalResource" type="text" placeholder="optional" class="form-control input-md">
+                        <input id="externalResource" name="externalResource" type="text" placeholder="optional" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Text input for time-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="releaseDate">Image URL</label>
+                      <label class="col-md-4 control-label" for="eventImage">Image URL</label>
                       <div class="col-md-4">
-                        <input id="releaseDate" name="imageUrl" type="text" placeholder="url here" class="form-control input-md">
+                        <input id="eventImage" name="imageUrl" type="text" placeholder="url here" class="form-control input-md">
                       </div>
                     </div>
                     <!-- Textarea for description-->
@@ -84,21 +85,16 @@
                         <textarea class="form-control" id="eventDescription" name="description" placeholder="What is the event about?"></textarea>
                       </div>
                     </div>
-                    <!-- Button -->
-                    <!-- <div class="form-group">
-                      <label class="col-md-4 control-label" for="singlebutton">Post Event</label>
-                      <div class="col-md-4">
-                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
-                      </div>
+                    
                     </div>
-                  </fieldset>
-                </form>
-              </div> -->
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button id="createdEvent" name="singlebutton" class="btn btn-primary">Save changes</button>
+                <button id="createEvent" name="singlebutton" class="btn btn-primary">Submit</button>
+
               </div>
             </div>
+          </fieldset>
+        </form>
           </div>
         </div>
     </div>
@@ -117,34 +113,14 @@
       </form>
     </div>
   </nav>
-
   <!-- EVENT BOXES -->
   <div class="col-lg-9 col-md-9 col-xs-12 eventContainer">
-    <div class="panel-group1">
-      <div class="panel panel-default">
-        <div class="panel-heading">Events</div>
-          <div class="panel-body">
-            <p>
-              Event info here
-            </p>
-          </div>
-        </div>
 
-      <div class="panel-group2">
-        <div class="panel panel-default">
-          <div class="panel-heading">Events</div>
-          <div class="panel-body">
-            <p>
-              Event info here
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   </body>
   <!-- VENDOR SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../public/scripts/app.js"></script>
+  <script src="../scripts/app.js"></script>
 </html>
