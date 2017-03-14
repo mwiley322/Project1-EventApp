@@ -31,8 +31,39 @@ function create(req, res) {
   });
 }//closes create function
 
+// PUT /api/events/:id
+function update(req, res) {
+  console.log('event update: ', req.params);
+  var eventId = req.params.id; //id to search
+  var eventToUpdate = req.body; //form data to update
+  db.Event.findByIdAndUpdate(eventId, eventToUpdate, {new: true}, function(err, updatedEvent) { //newtrue means that it sends back the updated version
+    if (err) { console.log('err!: ', err);
+      res.sendStatus(204);
+    } else {
+      console.log(updatedEvent);
+      res.json(updatedEvent);
+    } //closes else statement
+  }); //closes findByIdAndUpdate
+} //closes update function
+
+// DELETE /api/events/:id
+function destroy(req, res) {
+  console.log('event to delete:', req.params);
+  var eventId = req.params.id;
+  db.Event.findByIdAndRemove(eventId, function(err, deletedEvent) {
+    if (err) {
+      console.log('err! ', err);
+    } else {
+      res.json(deletedEvent);
+    } //closes else statement
+  });//closes findByIdAndRemove
+} //closes destroy function
+
+
 module.exports = {
   index: index,
   show: show,
-  create: create
+  create: create,
+  update: update,
+  destroy: destroy
 };
