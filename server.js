@@ -33,9 +33,9 @@ app.get('/api/events/:id', controllers.events.show);
 // create an event
 app.post('/api/events', controllers.events.create);
 
-// //update one event
-// app.put('/api/events/:id', controllers.event.update);
-//
+//update one event
+app.put('/api/events/:id', controllers.events.update);
+
 // //delete one event
 // app.delete('/api/events/:id', controllers.event.destroy);
 
