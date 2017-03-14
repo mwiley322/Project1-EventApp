@@ -10,6 +10,17 @@ $(document).ready(function() {
       error: handleError
     }); //closes ajax get request
 
+    $('#createEvent').on('click', function postNewEvent(e) {
+      e.preventDefault();
+      var formData = $(this).serialize(); //translates request
+      console.log('here is the form data: ', formData);
+        $.post('/api/events', formData, function(event) {
+          console.log('event to post: ', event);
+          renderAlbum(album);
+        }); //closes ajax post request
+    renderEvent(event);
+    }); //closes postNewEvent function
+
 }); //closes DOM ready function
 
 function renderMultipleEvents(events) {
