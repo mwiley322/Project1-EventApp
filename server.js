@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // root route
 app.get('/', function (req, res) { res.sendFile('views/index.html' , { root : __dirname}); });
 
-// lets us route to the controllers api index
+// routes us to endpoint info
 app.get('/api', controllers.api.index);
 
 //get all events
@@ -36,8 +36,8 @@ app.post('/api/events', controllers.events.create);
 //update one event
 app.put('/api/events/:id', controllers.events.update);
 
-// //delete one event
-// app.delete('/api/events/:id', controllers.event.destroy);
+//delete one event
+app.delete('/api/events/:id', controllers.events.destroy);
 
 ////////////////////
 //  SERVER LISTENER

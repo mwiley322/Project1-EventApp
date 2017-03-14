@@ -46,10 +46,24 @@ function update(req, res) {
   }); //closes findByIdAndUpdate
 } //closes update function
 
+// DELETE /api/events/:id
+function destroy(req, res) {
+  console.log('event to delete:', req.params);
+  var eventId = req.params.id;
+  db.Event.findByIdAndRemove(eventId, function(err, deletedEvent) {
+    if (err) {
+      console.log('err! ', err);
+    } else {
+      res.json(deletedEvent);
+    } //closes else statement
+  });//closes findByIdAndRemove
+} //closes destroy function
+
 
 module.exports = {
   index: index,
   show: show,
   create: create,
-  update: update
+  update: update,
+  destroy: destroy
 };
