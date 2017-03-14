@@ -1,3 +1,15 @@
 .jumbotron {
-  height: 30vw;
+  height: 10vw;
+}
+
+.eventContainer {
+  border: solid black 1px;
+  overflow: scroll;
+  height: 33vw;
+}
+
+.sidebar {
+  border: solid 1px black;
+  height: 33vw;
+  position: fixed;
 }
