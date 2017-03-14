@@ -43,22 +43,52 @@ function renderEvent(event, keyword) {
               <div class="col-md-9 col-xs-12">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    <h4 class='inline-header'>Event Name:</h4>
-                    <span class='event-name'>${event.eventName}</span>
+                    <h4 class='inline-header'>${event.eventName}</h4>
                   </li>
                   <li class="list-group-item">
-                    <h4 class='inline-header'>Description:</h4>
+                    <span class='eventLocation'>${event.location}</span>
+                    <span class='eventTime pull-right'>- ${event.time}</span>
+                    <span class='eventDate pull-right'>${event.date} -</span>
+
+                  </li>
+                  <li class="list-group-item">
                     <span class='eventDescription'>${event.description}</span>
                   </li>
                   <li class="list-group-item">
-                    <h4 class='inline-header'>Date</h4>
-                    <span class='event-date'>${event.date}</span>
+                    <span class='event-date'>${event.peopleInterested} people interested</span>
                   </li>
                   <li class="list-group-item">
                     <h4 class="inline-header">Keywords:</h4>
                     <span class='event-keywords'>${event.keywords}</span>
                   </li>
                 </ul>
+                <div class="col-xs-2">
+                  <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
+                    Learn more
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <legend class="modal-title" id="learnMoreLabel">${event.eventName}</legend>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal">
+                            <fieldset>
+                            Hello
+                        <div class="form-group modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                    </div>
+                  </div>
+              </div>
+
+                </div>
+              </div>
               </div>
             </div>
             <!-- end of event internal row -->
