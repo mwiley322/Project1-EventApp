@@ -4,8 +4,9 @@ height:100px;
 width:140px;
 }
 
-$bgDefault      : #2ecc71;
-$bgHighlight    : #27ae60;
-$colDefault     : #ecf0f1;
-$colHover       : #d1ffed;
+
+
+#map{
+  height: 300px;
+  width: 300px;
 }
