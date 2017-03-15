@@ -29,26 +29,21 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script> -->
       <script src="../scripts/bootstrap-datepicker.min.js"></script>
-      <script async defer
-     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="../scripts/app.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
       <link rel="stylesheet" href="../styles/styles.css">
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="../styles/datepicker.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <body>
-
-
-
     <div>
-        <div class="container">
-            <h1>TechSpace</h1>
-            <p>dev events in your area!</p>
-        </div>
+      <div class="container">
+          <h1>TechSpace</h1>
+          <p>dev events in your area!</p>
+      </div>
     </div>
     <!--NAV BAR-->
     <nav class="navbar navbar-default" role="navigation">
@@ -66,7 +61,7 @@
 
         <form class="navbar-form" role="search">
           <div class="form-group ui-widget">
-            <input type="text" class="form-control" id="eventSearchForm" placeholder="Search">
+            <input type="text" class="form-control" id="eventSearchForm" placeholder="Begin typing to search...">
             <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
           </div>
         </form>
@@ -163,25 +158,10 @@
       <!--event info displayed here-->
     </div>
     <!--SIDE BAR -->
-  <div class="col-lg-3 col-md-3 sideSpace">
-    <h4 class="text-center">Filter Events by Date</h4>
-    <div id="datepicker"></div>
-    <hr>
-    <!-- <Google Maps Controls> -->
-    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-    <div id="type-selector" class="controls">
-        <input type="radio" name="type" id="changetype-all" checked="checked">
-        <label for="changetype-all">All</label>
 
-        <input type="radio" name="type" id="changetype-establishment">
-        <label for="changetype-establishment">Establishments</label>
-
-        <input type="radio" name="type" id="changetype-address">
-        <label for="changetype-address">Addresses</label>
-
-        <input type="radio" name="type" id="changetype-geocode">
-        <label for="changetype-geocode">Geocodes</label>
-    </div>
+    <div class="col-lg-3 col-md-3 sideSpace">
+      <h4 class="text-center">Filter Events by Date</h4>
+      <div id="datepicker"></div>
     <div id="map">
     </div>
 </div>
