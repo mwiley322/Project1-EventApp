@@ -4,13 +4,14 @@ $(document).ready(function() {
   console.log('dom is loaded!');
 
     $.ajax({
-      method: 'GET',
-      url: '/api/events',
-      success: renderMultipleEvents,
-      error: handleError
+        method: 'GET',
+        url: '/api/events',
+        success: renderMultipleEvents,
+        error: handleError
     }); //closes ajax get request
 
     $('#createEvent').on('click', handleNewEventSubmit);
+
 
     $('#eventSearchButton').on('click', handleSearchSubmit);
 
@@ -19,6 +20,7 @@ $(document).ready(function() {
       multidate: true,
       multidateSeparator: "-"
     });
+
 
 }); //closes DOM ready function
 
@@ -42,7 +44,7 @@ function renderEvent(event) {
             <div class='row'>
               <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
                 <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
-              </div>
+               </div>
               <div class="col-md-9 col-xs-12">
                 <ul class="list-group">
                   <li class="list-group-item">
@@ -96,6 +98,21 @@ function renderEvent(event) {
                                         </li>
                                         <li class="list-group-item">
                                           <span class='eventLocation'>${event.location}</span>
+
+                                          <!--- Google maps ----!>
+                                          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
+                                          <div id="googleMap" style="width:300px;height:300px;"></div>
+                                          <script>
+                                          function myMap() {
+                                            var mapProp= {
+                                              center:new google.maps.LatLng(51.508742,-0.120850),
+                                              zoom:5,
+                                            };
+                                            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                          }
+                                          </script>
+
+
                                           <span class='eventTime pull-right'>&#160;${event.time}</span>
 
                                           <span class='eventDate pull-right'>${event.date}</span>
@@ -112,7 +129,6 @@ function renderEvent(event) {
                                           <span class='event-keywords'>${event.keywords}</span>
                                         </li>
                                       </ul>
-
                             <fieldset>
 
                         <ul class="pull-right" style="list-style-type:none">
@@ -126,7 +142,6 @@ function renderEvent(event) {
                             <b>Description:</b>
                             <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
                             </fieldset>
-
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
@@ -185,7 +200,7 @@ function handleEventSearch(json) {
 }
 
 
-function handleNewEventSubmit(e) {
+function handleNewEventSubmit(e) {to /events:', data);
   e.preventDefault();
   var $newEventModal = $('#newEventModal');
   var $name = $newEventModal.find('#name');
