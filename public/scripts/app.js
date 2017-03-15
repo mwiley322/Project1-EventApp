@@ -1,5 +1,8 @@
 console.log('app.js is loaded!');
+
+
 var myTags = [];
+
 
 var availableTags = [
   "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
@@ -12,8 +15,10 @@ var availableTags = [
   "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL"
 ];
 
+
 $(document).ready(function() {
   console.log('dom is loaded!');
+
 
     $.ajax({
         method: 'GET',
@@ -22,18 +27,18 @@ $(document).ready(function() {
         error: handleError
     }); //closes ajax get request
 
+
     // Google Maps Start
 
       // end of google maps
-
     $('#createEvent').on('click', handleNewEventSubmit);
 
     $('#eventSearchButton').on('click', handleSearchSubmit);
-
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
       multidate: false
     });
+
 
     $( function autoSearch() {
        $("#tags").autocomplete({
@@ -63,7 +68,8 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
-function initMap() {
+    // Google Maps Start
+  function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: -33.8688,
@@ -133,17 +139,19 @@ function initMap() {
 //   setupClickListener('changetype-geocode', ['geocode']);
 // }
 
+
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
     renderEvent(event);
   }); //closes foreach
 }//closes rendermult.
-
 function renderEvent(event) {
   var keyWordArray = event.keywords;
   keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
     return keyWord.name;
   });
+
+
   event.keywords = keyWordArray.join(', ');
   var eventHtml = (`
         <div class="panel panel-default">
@@ -159,7 +167,19 @@ function renderEvent(event) {
                     <h4 class='inline-header'>${event.eventName}</h4>
                   </li>
                   <li>
-                    <span class='eventLocation'>${event.location}</span>
+                    <a class="openmodal" href="#contact"  data-toggle="modal" data-id="Peggy Guggenheim Collection - Venice"><span class='eventLocation'>${event.location}</span></a>
+      <div class="modal fade" id="contact" role="dialog" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="back" >
+                    <div class="modal-header"> <h4>Location<h4></div>
+                <div class="modal-body">
+                    <div id="map"></div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+      </div>
                     <span class='eventTime pull-right'>&#160;${event.time}</span>
                     <span class='eventDate pull-right'>${event.date}</span>
                   </li>
@@ -183,66 +203,35 @@ function renderEvent(event) {
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
-
                           <div class="row event">
                             <div class="col-md-10 col-md-offset-1">
-                              <div class="panel panel-default">
-                                <div class="panel-body">
+
                                 <!-- begin event internal row -->
-                                  <div class='row'>
                                     <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
                                       <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
                                     </div>
                                     <div class="col-md-9 col-xs-12">
                                       <ul class="list-group">
-                                        <li class="list-group-item">
+
                                           <h4 class='inline-header'>${event.eventName}</h4>
                                         </li>
-                                        <li class="list-group-item">
+
                                           <span class='eventLocation'>${event.location}</span>
-
-                                          <!--- Google maps ----!>
-                                          <div id="googleMap" style="width:300px;height:300px;"></div>
-                                          <script>
-                                          function myMap() {
-                                            var mapProp= {
-                                              center:new google.maps.LatLng(51.508742,-0.120850),
-                                              zoom:5,
-                                            };
-                                            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                                          }
-                                          </script>
-
-
                                           <span class='eventTime pull-right'>&#160;${event.time}</span>
-
                                           <span class='eventDate pull-right'>${event.date}</span>
-
                                         </li>
-                                        <li class="list-group-item">
+
                                           <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
                                         </li>
-                                        <li class="list-group-item">
+
                                           <span class='event-date'>19 people interested</span>
                                         </li>
-                                        <li class="list-group-item">
+
                                           <h4 class="inline-header">Keywords:</h4>
                                           <span class='event-keywords'>${event.keywords}</span>
                                         </li>
                                       </ul>
-                            <fieldset>
 
-                        <ul class="pull-right" style="list-style-type:none">
-                        <li><b>Event Name:</b>Text Here</li>
-                        <li><b>Location:</b>City, State</li>
-                        <li><b>Date:</b> 02/20/2017</li>
-                        <li><b>Time:</b> 8:00</li>
-                        </ul>
-                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQaVz3lAJ2zFCc52NKlX6bTjajPRrzcFqQ15FB5Vd6G5sisWS2Vw4cWHPs" alt="event image">
-                            <hr>
-                            <b>Description:</b>
-                            <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
-                            </fieldset>
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
@@ -250,24 +239,19 @@ function renderEvent(event) {
                     </div>
                   </div>
               </div>
-
                 </div>
               </div>
               </div>
             </div>
             <!-- end of event internal row -->
-
             </div>
           </div>
         </div>
-
-
     <!-- end one event -->
   `);
+
   $('.eventContainer').prepend(eventHtml);
 } //closes renderEvent function
-
-
 function handleSearchSubmit(e) {
   var $searchForm = $('#eventSearchForm');
   e.preventDefault();
@@ -279,7 +263,6 @@ function handleSearchSubmit(e) {
   }
 
   // $loading.show(); // show loading gif
-
   $.ajax({
     method: 'GET',
     endpoint: '/api/keyword/?keyword=' + query,
@@ -290,14 +273,13 @@ function handleSearchSubmit(e) {
     success: handleEventSearch,
     error: handleEventSearchError
   });//closes ajax search request
-
   $searchForm.val(''); // clear the form fields
 } //closes handleSearchSubmit
-
-
 function handleEventSearch(json) {
   console.log('BLARG ', json);
 }
+
+
 
 
 function handleNewEventSubmit(e) {
@@ -345,13 +327,10 @@ function handleNewEventSubmit(e) {
       renderEvent(data);
     }); //closes post request
 } //closes function
-
-
 function handleError(err) {
   console.log('error loading events!: ', err);
   $('.eventContainer').append('Sorry, there was a problem loading events.');
 }
-
 function handleEventSearchError(err) {
   console.log('error searching for an event: ', err);
 }
