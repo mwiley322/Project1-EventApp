@@ -4,6 +4,18 @@ console.log('app.js is loaded!');
 var myTags = [];
 
 
+var availableTags = [
+  "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
+  "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Picnic", "Beer", "Party", "Lecture", "Education",
+  "Meetup", "Formal", "MEAN","React","JS", "Full stack", "Interview","Algorithms","Front-end","Back-end", "Database",
+  "Web design","Graphic design","Design","LinkedIn","Resume","Computer science","Ruby", "Open bar", "La Croix","Rails",
+  "MongoDB","Networking","Mongoose","Job fair","Coding","General Assembly","Whiteboard","Hangout","Social","Brand","WDI 36",
+  "Web development","C+","Handlebars","SASS","Beginners","Intermediate","Advanced","Python","Ruby","Scala","Scheme",
+  "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving", "dogs", "cats", "Other", "Veterans", "Github",
+  "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL"
+];
+
+
 $(document).ready(function() {
   console.log('dom is loaded!');
 
@@ -15,7 +27,12 @@ $(document).ready(function() {
         error: handleError
     }); //closes ajax get request
 
+
+    // Google Maps Start
+      // initMap();
+      // end of google maps
     $('#createEvent').on('click', handleNewEventSubmit);
+
     $('#eventSearchButton').on('click', handleSearchSubmit);
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
@@ -24,32 +41,6 @@ $(document).ready(function() {
 
 
     $( function autoSearch() {
-       var availableTags = [
-         "ActionScript",
-         "AppleScript",
-         "Asp",
-         "BASIC",
-         "C",
-         "C++",
-         "Clojure",
-         "COBOL",
-         "ColdFusion",
-         "Erlang",
-         "Fortran",
-         "Groovy",
-         "Haskell",
-         "Java",
-         "JavaScript",
-         "Lisp",
-         "Perl",
-         "PHP",
-         "Python",
-         "Ruby",
-         "Scala",
-         "Scheme"
-       ];
-
-
        $("#tags").autocomplete({
          minLength: 1,
          source: availableTags,
@@ -60,11 +51,11 @@ $(document).ready(function() {
             $(this).val(''); return false;
           }//closes select function
        });//closes autocomplete function
-  }); //closes search function
+    }); //closes search function
 
     $("#eventSearchForm").autocomplete({
       minLength: 1,
-      source: Event.keywords,
+      source: availableTags,
       select: function(event, ui) {
         var selection = ui.item.value;
         console.log(selection);
@@ -74,24 +65,22 @@ $(document).ready(function() {
     });//closes autocomplete function
 
     // Google Maps Start
-    function initMap() {
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: -33.8688,
-        lng: 151.2195
-      },
-      zoom: 13
-    });
-    var input = /** @type {!HTMLInputElement} */ (
-      document.getElementById('pac-input'));
-
+  function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: -33.8688,
+      lng: 151.2195
+    },
+    zoom: 13
+  });
+  var input = /** @type {!HTMLInputElement} */ (
+    document.getElementById('pac-input'));
     var types = document.getElementById('type-selector');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
+
 
     var infowindow = new google.maps.InfoWindow();
     var marker = new google.maps.Marker({
@@ -137,6 +126,7 @@ $(document).ready(function() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
     });
+ 
 
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
@@ -153,8 +143,6 @@ $(document).ready(function() {
     setupClickListener('changetype-geocode', ['geocode']);
   }
 
-  initMap();
-  // end of google maps
 
 
 }); //closes DOM ready function
