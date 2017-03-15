@@ -1,6 +1,17 @@
 console.log('app.js is loaded!');
 var myTags = [];
 
+var availableTags = [
+  "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
+  "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Picnic", "Beer", "Party", "Lecture", "Education",
+  "Meetup", "Formal", "MEAN","React","JS", "Full stack", "Interview","Algorithms","Front-end","Back-end", "Database",
+  "Web design","Graphic design","Design","LinkedIn","Resume","Computer science","Ruby", "Open bar", "La Croix","Rails",
+  "MongoDB","Networking","Mongoose","Job fair","Coding","General Assembly","Whiteboard","Hangout","Social","Brand","WDI 36",
+  "Web development","C+","Handlebars","SASS","Beginners","Intermediate","Advanced","Python","Ruby","Scala","Scheme",
+  "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving", "dogs", "cats", "Other", "Veterans", "Github",
+  "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL"
+];
+
 $(document).ready(function() {
   console.log('dom is loaded!');
 
@@ -13,7 +24,6 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
-
     $('#eventSearchButton').on('click', handleSearchSubmit);
 
     $('#datepicker').datepicker({
@@ -22,30 +32,6 @@ $(document).ready(function() {
     });
 
     $( function autoSearch() {
-       var availableTags = [
-         "ActionScript",
-         "AppleScript",
-         "Asp",
-         "BASIC",
-         "C",
-         "C++",
-         "Clojure",
-         "COBOL",
-         "ColdFusion",
-         "Erlang",
-         "Fortran",
-         "Groovy",
-         "Haskell",
-         "Java",
-         "JavaScript",
-         "Lisp",
-         "Perl",
-         "PHP",
-         "Python",
-         "Ruby",
-         "Scala",
-         "Scheme"
-       ];
 
 
        $("#tags").autocomplete({
@@ -62,7 +48,7 @@ $(document).ready(function() {
 
     $("#eventSearchForm").autocomplete({
       minLength: 1,
-      source: Event.keywords,
+      source: availableTags,
       select: function(event, ui) {
         var selection = ui.item.value;
         console.log(selection);
@@ -70,7 +56,6 @@ $(document).ready(function() {
         //  $(this).val(''); return false;
        }//closes select function
     });//closes autocomplete function
-
 
 
 }); //closes DOM ready function
