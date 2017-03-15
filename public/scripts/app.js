@@ -1,7 +1,7 @@
 console.log('app.js is loaded!');
 
 $(document).ready(function() {
-    console.log('dom is loaded!');
+  console.log('dom is loaded!');
 
     $.ajax({
         method: 'GET',
@@ -12,43 +12,39 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
-    // $('#createEvent').on('submit', function postNewEvent(e) {
-    //   e.preventDefault();
-    //   // var formData = {thing: value, doohickey: with another value}; //translates request
-    //   console.log('here is the form data: ', formData);
-    //     // BODY - so we need to access it in the server via req.body
-    //     $.post('/api/events', formData, function(event) {
-    //       console.log('event to post: ', event);
-    //       renderEvent(event);
-    //     }); //closes ajax post request
-    //   $('form').trigger('reset');
-    // }); //closes postNewEvent function
 
+    $('#eventSearchButton').on('click', handleSearchSubmit);
 
+    $('#datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      multidate: true,
+      multidateSeparator: "-"
+    });
 
 
 }); //closes DOM ready function
 
+
 function renderMultipleEvents(events) {
-    events.forEach(function(event) {
-        renderEvent(event);
-    }); //closes foreach
-} //closes rendermult.
+  events.forEach(function(event) {
+    renderEvent(event);
+  }); //closes foreach
+}//closes rendermult.
 
 function renderEvent(event) {
-    var keyWordArray = event.keywords;
-    keyWordArray = keyWordArray.map(function ripActualKeywordsOut(keyWord) {
-        return keyWord.name;
-    });
-    event.keywords = keyWordArray.join(', ');
-    var eventHtml = (`
+  var keyWordArray = event.keywords;
+  keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
+    return keyWord.name;
+  });
+  event.keywords = keyWordArray.join(', ');
+  var eventHtml = (`
         <div class="panel panel-default">
           <div class="panel-body">
           <!-- begin event internal row -->
             <div class='row'>
               <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                <img src="${event.imageUrl}" class="responsive-img" alt="event image">
-              </div>
+                <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
+               </div>
               <div class="col-md-9 col-xs-12">
                 <ul class="list-group">
                   <li class="list-group-item">
@@ -102,6 +98,7 @@ function renderEvent(event) {
                                         </li>
                                         <li class="list-group-item">
                                           <span class='eventLocation'>${event.location}</span>
+
                                           <!--- Google maps ----!>
                                           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
                                           <div id="googleMap" style="width:300px;height:300px;"></div>
@@ -132,6 +129,19 @@ function renderEvent(event) {
                                           <span class='event-keywords'>${event.keywords}</span>
                                         </li>
                                       </ul>
+                            <fieldset>
+
+                        <ul class="pull-right" style="list-style-type:none">
+                        <li><b>Event Name:</b>Text Here</li>
+                        <li><b>Location:</b>City, State</li>
+                        <li><b>Date:</b> 02/20/2017</li>
+                        <li><b>Time:</b> 8:00</li>
+                        </ul>
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQaVz3lAJ2zFCc52NKlX6bTjajPRrzcFqQ15FB5Vd6G5sisWS2Vw4cWHPs" alt="event image">
+                            <hr>
+                            <b>Description:</b>
+                            <p align="justify style="text-align:center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus magna neque, vitae cursus nunc mollis et.</p>
+                            </fieldset>
                         <div class="form-group modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
@@ -153,55 +163,91 @@ function renderEvent(event) {
 
     <!-- end one event -->
   `);
-    $('.eventContainer').prepend(eventHtml);
+  $('.eventContainer').prepend(eventHtml);
+} //closes renderEvent function
+
+
+function handleSearchSubmit(e) {
+  var $searchForm = $('.eventSearchForm');
+  e.preventDefault();
+  var query = $searchForm.val();
+
+  console.log('You tried to search for', query);
+  if (query === "") {
+    $searchForm.focus();
+    return;
+  }
+
+  // $loading.show(); // show loading gif
+
+  $.ajax({
+    method: 'GET',
+    endpoint: '/api/events/?',
+    data: {
+      type: 'keyword',
+      q: query
+    },
+    success: handleEventSearch,
+    error: handleEventSearchError
+  });//closes ajax search request
+
+  $searchForm.val(''); // clear the form fields
+} //closes handleSearchSubmit
+
+
+function handleEventSearch(json) {
+  console.log('data searched', json);
 }
 
 
-function handleNewEventSubmit(e) {
-    e.preventDefault();
-    var $newEventModal = $('#newEventModal');
-    var $name = $newEventModal.find('#name');
-    var $eventLocation = $newEventModal.find('#eventLocation');
-    var $eventDate = $newEventModal.find('#eventDate');
-    var $email = $newEventModal.find('#posterEmail');
-    var $links = $newEventModal.find('#externalResource');
-    var $imageUrl = $newEventModal.find('#imageUrl');
-    var $desc = $newEventModal.find('#eventDescription');
-    var $eventTime = $newEventModal.find('#eventTime');
-    // get data from modal fields
-    var dataToPost = {
-        eventName: $name.val(),
-        location: $eventLocation.val(),
-        date: $eventDate.val(),
-        time: $eventTime.val(),
-        posterEmail: $email.val(),
-        externalResource: $links.val(),
-        description: $desc.val(),
-        imageUrl: $imageUrl.val()
-    };
-    // var eventId = $newEventModal.data('eventId');
-    console.log('retrieved new event!', dataToPost);
-    // POST to SERVER
-    // var eventPostToServerUrl = '/api/event/'+ eventId + '/events';
+function handleNewEventSubmit(e) {to /events:', data);
+  e.preventDefault();
+  var $newEventModal = $('#newEventModal');
+  var $name = $newEventModal.find('#name');
+  var $eventLocation = $newEventModal.find('#eventLocation');
+  var $eventDate = $newEventModal.find('#eventDate');
+  var $email = $newEventModal.find('#posterEmail');
+  var $links = $newEventModal.find('#externalResource');
+  var $imageUrl = $newEventModal.find('#imageUrl');
+  var $desc = $newEventModal.find('#eventDescription');
+  var $eventTime= $newEventModal.find('#eventTime');
+  // get data from modal fields
+  var dataToPost = {
+    eventName: $name.val(),
+    location: $eventLocation.val(),
+    date: $eventDate.val(),
+    time: $eventTime.val(),
+    posterEmail: $email.val(),
+    externalResource: $links.val(),
+    description: $desc.val(),
+    imageUrl: $imageUrl.val()
+  };
+  // var eventId = $newEventModal.data('eventId');
+  console.log('retrieved new event!', dataToPost);
+  // var eventPostToServerUrl = '/api/event/'+ eventId + '/events';
     $.post('/api/events', dataToPost, function(data) {
-        console.log('received data from post to /events:', data);
-        // clear form
-        $name.val('');
-        $eventLocation.val('');
-        $eventDate.val('');
-        $eventTime.val('');
-        $email.val('');
-        $links.val('');
-        $desc.val('');
-        $imageUrl.val('');
-        // close modal
-        $newEventModal.modal('hide');
-        renderEvent(data);
+      console.log('received data from post to /events:', data);
+      // clear form
+      $name.val('');
+      $eventLocation.val('');
+      $eventDate.val('');
+      $eventTime.val('');
+      $email.val('');
+      $links.val('');
+      $desc.val('');
+      $imageUrl.val('');
+      // close modal
+      $newEventModal.modal('hide');
+      renderEvent(data);
     }); //closes post request
 } //closes function
 
 
 function handleError(err) {
-    console.log('error loading events!: ', err);
-    $('.eventContainer').append('Sorry, there was a problem loading events.');
+  console.log('error loading events!: ', err);
+  $('.eventContainer').append('Sorry, there was a problem loading events.');
+}
+
+function handleEventSearchError(err) {
+  console.log('error searching for an event: ', err);
 }

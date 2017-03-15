@@ -12,7 +12,7 @@ eventData.push({
     posterEmail: 'Lamar123@aol.com',
     externalResource: 'www.Stackoverflow.com', //show as links
     imageUrl: 'http://www.b2bweb.fr/wp-content/uploads/js-logo-badge-256.png',
-    // keywords: [] //searchable
+    keywords: []
 });
 eventData.push({
     eventName: 'Learn HTML & CSS',
@@ -22,7 +22,7 @@ eventData.push({
     time: '9:00am',
     posterEmail: 'Lamar123@aol.com',
     imageUrl: 'https://uploads.toptal.io/blog/category/logo/364/CSS.png',
-    // keywords: ['Html', 'Css', 'Bay Area', 'Front End'] //searchable
+    keywords: []
 });
 eventData.push({
     eventName: 'Technical Interview Prep',
@@ -34,78 +34,34 @@ eventData.push({
     posterEmail: 'Lamar123@aol.com',
     externalResource: 'www.codeacademy.com', //show as links
     imageUrl: 'http://farm6.static.flickr.com/5215/5493668169_4683cb1a03_m.jpg',
-    // keywords: ['Logic', 'Algorithms', 'Bay Area', 'Interview'] //searchable
-});
-
-// keywords for events
-
-var sampleKeywords = [];
-
-sampleKeywords.push({
-    name: 'Javascript'
+    keywords: []
 });
 
 
-sampleKeywords.push({
-    name: "Css"
-});
 
-
-sampleKeywords.push({
-    name: 'Developer'
-});
-
-
-sampleKeywords.push({
-    name: 'Front End'
-});
-
-
-sampleKeywords.push({
-    name: 'Bootstrap'
-});
-
-
-sampleKeywords.push({
-    name: 'Ruby'
-});
-
-
-sampleKeywords.push({
-    name: 'Html'
-});
-
-sampleKeywords.push({
-    name: 'Bay Area'
-});
-
-
-sampleKeywords.push({
-    name: 'Interview'
-});
-
-
-sampleKeywords.push({
-    name: 'Algorithms'
-});
-
-
-sampleKeywords.push({
-    name: 'Web Design'
-});
-
+var sampleKeywords = [
+  { name: 'CSS' },
+  { name: 'JavaScript' },
+  { name: 'Developer' },
+  { name: 'Front End' },
+  { name: 'Bootstrap' },
+  { name: 'Ruby' },
+  { name: 'HTML' },
+  { name: 'Interview' },
+  { name: 'Algorithms' },
+  { name: 'UX' },
+  { name: 'Graphic Design' }
+];
 
 
 // add all keywords to each event
 eventData.forEach(function(event) {
-    event.keywords = sampleKeywords;
+  event.keywords = sampleKeywords;
 }); // closes keyword function
 
 db.Event.remove({}, function(err, events) {
     db.Event.create(eventData, function(err, events) {
-        if (err) {
-            return console.log('ERROR', err);
-        }
+        if (err) { return console.log('ERROR', err); }
         console.log("all events: ", events);
         console.log("created ", eventData.length, " events");
         process.exit();

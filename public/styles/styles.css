@@ -1,12 +1,22 @@
-.eventBox{
-border:1px solid black;
-height:100px;
-width:140px;
+.jumbotron {
+  height: 12vw;
 }
 
+.eventContainer {
+  overflow: scroll;
+  height: 40vw;
+  margin-bottom: 5vw;
+}
 
+.sidebar {
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  height: 40vw;
+  position: fixed;
+}
 
-#map{
-  height: 300px;
-  width: 300px;
+#datepicker {
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  margin-top: .5vw;
 }
