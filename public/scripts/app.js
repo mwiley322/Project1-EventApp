@@ -12,12 +12,14 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
+    $('#eventSearchButton').on('click', handleSearchSubmit);
+
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
       multidate: true,
       multidateSeparator: "-"
     });
-    
+
 }); //closes DOM ready function
 
 
@@ -147,6 +149,39 @@ function renderEvent(event) {
     <!-- end one event -->
   `);
   $('.eventContainer').prepend(eventHtml);
+} //closes renderEvent function
+
+
+function handleSearchSubmit(e) {
+  var $searchForm = $('.eventSearchForm');
+  e.preventDefault();
+  var query = $searchForm.val();
+
+  console.log('You tried to search for', query);
+  if (query === "") {
+    $searchForm.focus();
+    return;
+  }
+
+  // $loading.show(); // show loading gif
+
+  $.ajax({
+    method: 'GET',
+    endpoint: '/api/events/?',
+    data: {
+      type: 'keyword',
+      q: query
+    },
+    success: handleEventSearch,
+    error: handleEventSearchError
+  });//closes ajax search request
+
+  $searchForm.val(''); // clear the form fields
+} //closes handleSearchSubmit
+
+
+function handleEventSearch(json) {
+  console.log('data searched', json);
 }
 
 
@@ -174,7 +209,6 @@ function handleNewEventSubmit(e) {
   };
   // var eventId = $newEventModal.data('eventId');
   console.log('retrieved new event!', dataToPost);
-  // POST to SERVER
   // var eventPostToServerUrl = '/api/event/'+ eventId + '/events';
     $.post('/api/events', dataToPost, function(data) {
       console.log('received data from post to /events:', data);
@@ -195,6 +229,10 @@ function handleNewEventSubmit(e) {
 
 
 function handleError(err) {
- console.log('error loading events!: ', err);
- $('.eventContainer').append('Sorry, there was a problem loading events.');
+  console.log('error loading events!: ', err);
+  $('.eventContainer').append('Sorry, there was a problem loading events.');
+}
+
+function handleEventSearchError(err) {
+  console.log('error searching for an event: ', err);
 }
