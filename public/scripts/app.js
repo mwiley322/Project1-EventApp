@@ -17,7 +17,7 @@ $(document).ready(function() {
       multidate: true,
       multidateSeparator: "-"
     });
-    
+
 }); //closes DOM ready function
 
 
