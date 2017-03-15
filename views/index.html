@@ -24,6 +24,7 @@
       <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
       <!--LINKS-->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="../scripts/bootstrap-datepicker.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -34,7 +35,7 @@
 
 <body>
     <!--JUMBOTRON-->
-    <div class="jumbotron">
+    <div>
         <div class="container">
             <h1>TechSpace</h1>
             <p>dev events in your area!</p>
@@ -42,20 +43,24 @@
     </div>
     <!--NAV BAR-->
     <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-      <!--button to trigger create new event modal-->
-      <button type="button" id="createNewEventBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEventModal">
-        Create Event
-      </button>
-      <div class="navbar-header col-md-6">
-      <!-- SEARCH FORM AND SUBMIT  -->
-      <form class="navbar-form navbar-middle" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control eventSearchForm" placeholder="Search">
-          <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
+      <div class="col-lg-6">
+        <div class="row">
+          <!--button to trigger create new event modal-->
+          <button type="button" id="createNewEventBtn" class="btn btn-primary" data-toggle="modal" data-target="#newEventModal">
+            Create Event
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="col-lg-6">
+        <!-- SEARCH FORM AND SUBMIT  -->
+        <form class="navbar-form" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control eventSearchForm" placeholder="Search">
+            <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
+          </div>
+        </form>
+      </div>
+    </nav>
       <!-- Modal -->
       <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
         <div class="modal-dialog" role="document">
@@ -126,25 +131,27 @@
               <button id="createEvent" name="singlebutton" class="btn btn-primary" data-dismiss="modal">Submit</button>
             </div>
           </div>
-      </form>
+        </form>
         </div>
       </div>
-  </div>
-  </nav>
+    </div>
 
 
-  <div class="container">
+    <!-- <div class="container"> -->
+      <div class="mainDisplay">
     <!-- EVENT BOXES -->
-    <div class="col-lg-9 col-md-9 col-xs-12 eventContainer">
+    <div class="col-lg-8 col-md-9 col-xs-12 eventContainer">
       <!--event info displayed here-->
     </div>
     <!--SIDE BAR -->
-    <div class="col-lg-3 col-md-3 sidebar">
+    <div class="col-lg-3 col-md-3 sideSpace">
+      <h4 class="text-center">Filter Events by Date</h4>
       <div id="datepicker"></div>
-      <button type="submit" id="searchByDateBtn" class="btn btn-default">Filter Events By Date</button>
     </div>
-
   </div>
+  <!-- </div> -->
+
+
   </body>
 
 </html>

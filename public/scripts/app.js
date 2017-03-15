@@ -17,8 +17,7 @@ $(document).ready(function() {
 
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
-      multidate: true,
-      multidateSeparator: "-"
+      multidate: false
     });
 
 
@@ -46,29 +45,23 @@ function renderEvent(event) {
                 <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
                </div>
               <div class="col-md-9 col-xs-12">
-                <ul class="list-group">
-                  <li class="list-group-item">
+                <ul>
+                  <li>
                     <h4 class='inline-header'>${event.eventName}</h4>
                   </li>
-                  <li class="list-group-item">
+                  <li>
                     <span class='eventLocation'>${event.location}</span>
-
                     <span class='eventTime pull-right'>&#160;${event.time}</span>
                     <span class='eventDate pull-right'>${event.date}</span>
-
                   </li>
-                  <li class="list-group-item">
+                  <li>
                     <span class='eventDescription'>${event.description}</span>
                   </li>
-                  <li class="list-group-item">
-                    <span class='event-date'>${event.peopleInterested} people interested</span>
-                  </li>
-                  <li class="list-group-item">
-                    <h4 class="inline-header">Keywords:</h4>
-                    <span class='event-keywords'>${event.keywords}</span>
-                  </li>
                 </ul>
-                <div class="col-xs-2">
+                <div class="col-xs-6">
+                  <span class='event-date'>${event.peopleInterested} people interested</span>
+                </div>
+                <div class="col-xs-6">
                   <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
                     Learn more
                   </button>
@@ -100,7 +93,6 @@ function renderEvent(event) {
                                           <span class='eventLocation'>${event.location}</span>
 
                                           <!--- Google maps ----!>
-                                          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
                                           <div id="googleMap" style="width:300px;height:300px;"></div>
                                           <script>
                                           function myMap() {
@@ -171,7 +163,6 @@ function handleSearchSubmit(e) {
   var $searchForm = $('.eventSearchForm');
   e.preventDefault();
   var query = $searchForm.val();
-
   console.log('You tried to search for', query);
   if (query === "") {
     $searchForm.focus();
@@ -200,7 +191,7 @@ function handleEventSearch(json) {
 }
 
 
-function handleNewEventSubmit(e) {to /events:', data);
+function handleNewEventSubmit(e) {
   e.preventDefault();
   var $newEventModal = $('#newEventModal');
   var $name = $newEventModal.find('#name');
@@ -239,6 +230,7 @@ function handleNewEventSubmit(e) {to /events:', data);
       // close modal
       $newEventModal.modal('hide');
       renderEvent(data);
+      $('#createEvent').blur();
     }); //closes post request
 } //closes function
 

@@ -2,21 +2,34 @@
   height: 12vw;
 }
 
+.mainDisplay {
+  margin-left: 80px;
+}
 .eventContainer {
   overflow: scroll;
   height: 40vw;
   margin-bottom: 5vw;
 }
 
-.sidebar {
-  border: solid 1px #ddd;
-  border-radius: 5px;
-  height: 40vw;
-  position: fixed;
+li {
+  list-style: none;
 }
 
-#datepicker {
+button:focus {
+  outline: 0 !important;
+}
+
+.thumbnail {
+  max-height: 15vw;
+}
+
+.sideSpace {
   border: solid 1px #ddd;
   border-radius: 5px;
-  margin-top: .5vw;
+  margin-left: 30px;
+  height: 40vw;
+}
+
+#createNewEventBtn {
+  margin: 10px 15px;
 }
