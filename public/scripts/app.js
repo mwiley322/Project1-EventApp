@@ -14,7 +14,7 @@ $(document).ready(function() {
     $('#createEvent').on('click', handleNewEventSubmit);
 
 
-    // $('#eventSearchButton').on('click', handleSearchSubmit);
+    $('#eventSearchButton').on('click', handleSearchSubmit);
 
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
@@ -53,19 +53,25 @@ $(document).ready(function() {
          source: availableTags,
          select: function(event, ui) {
            var selection = ui.item.value;
-           console.log(selection);
-          $('#tagsHere').append(selection + " ");
-          myTags.push(selection);
-          $(this).val(''); return false;
-         }
-        //  renderItem: function( ul, item ) {
-        //    return $( "<li>" )
-        //    .attr( "data-value", item.value )
-        //    .append( item.label )
-        //    .appendTo( ul );
-        //  }//closes render function
-       });//closes tag function
+            $('#tagsHere').append(selection + " ");
+            myTags.push(selection);
+            $(this).val(''); return false;
+          }//closes select function
+       });//closes autocomplete function
   }); //closes search function
+
+    $("#eventSearchForm").autocomplete({
+      minLength: 1,
+      source: Event.keywords,
+      select: function(event, ui) {
+        var selection = ui.item.value;
+        console.log(selection);
+        //  myTags.push(selection);
+        //  $(this).val(''); return false;
+       }//closes select function
+    });//closes autocomplete function
+
+
 
 }); //closes DOM ready function
 
@@ -205,36 +211,36 @@ function renderEvent(event) {
 } //closes renderEvent function
 
 
-// function handleSearchSubmit(e) {
-//   var $searchForm = $('.eventSearchForm');
-//   e.preventDefault();
-//   var query = $searchForm.val();
-//   console.log('You tried to search for', query);
-//   if (query === "") {
-//     $searchForm.focus();
-//     return;
-//   }
-//
-//   // $loading.show(); // show loading gif
-//
-//   $.ajax({
-//     method: 'GET',
-//     endpoint: '/api/keyword/?keyword=' + query,
-//     data: {
-//       type: 'keyword',
-//       keyword: query
-//     },
-//     success: handleEventSearch,
-//     error: handleEventSearchError
-//   });//closes ajax search request
-//
-//   $searchForm.val(''); // clear the form fields
-// } //closes handleSearchSubmit
-//
-//
-// function handleEventSearch(json) {
-//   console.log('BLARG ', json);
-// }
+function handleSearchSubmit(e) {
+  var $searchForm = $('#eventSearchForm');
+  e.preventDefault();
+  var query = $searchForm.val();
+  console.log('You tried to search for', query);
+  if (query === "") {
+    $searchForm.focus();
+    return;
+  }
+
+  // $loading.show(); // show loading gif
+
+  $.ajax({
+    method: 'GET',
+    endpoint: '/api/keyword/?keyword=' + query,
+    data: {
+      type: 'keyword',
+      keyword: query
+    },
+    success: handleEventSearch,
+    error: handleEventSearchError
+  });//closes ajax search request
+
+  $searchForm.val(''); // clear the form fields
+} //closes handleSearchSubmit
+
+
+function handleEventSearch(json) {
+  console.log('BLARG ', json);
+}
 
 
 function handleNewEventSubmit(e) {
