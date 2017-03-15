@@ -24,17 +24,35 @@
       <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
       <!--LINKS-->
+
+
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <!-- <script src="node_modules/jquery.easy-autocomplete.min.js"></script> -->
       <script src="../scripts/bootstrap-datepicker.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="../scripts/app.js"></script>
       <link rel="stylesheet" href="../styles/styles.css">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <!-- <link rel="stylesheet" href="path/to/easy-autocomplete.min.css"> -->
       <link rel="stylesheet" href="../styles/datepicker.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <body>
-    <!--JUMBOTRON-->
+
+  <div class="ui-widget">
+    <label for="tags">Add searchable keywords: </label>
+    <input type="text" id="tags" name="keywords">
+  </div>
+  <div class="form-group" id="tagsHere">
+
+  </div>
+
+  <div class="form-group" id="tagsHere">
+    <!--chosen keywords go here-->
+  </div>
+
     <div>
         <div class="container">
             <h1>TechSpace</h1>
@@ -117,6 +135,14 @@
                   <div class="form-group">
                     <label for="imageUrl" class="col-md-4 control-label">Event Image Upload</label>
                       <input type="file" class="col-md-4" id="imageUrl" onchange="onFileSelected(event)" name="imageUrl">
+                  </div>
+                    <!-- keyword tag autocomplete selector-->
+                  <div class="ui-widget">
+                    <label for="tags">Add searchable keywords: </label>
+                    <input type="text" id="tags" name="keywords">
+                  </div>
+                  <div class="form-group" id="tagsHere">
+
                   </div>
                   <!-- Textarea for description-->
                   <div class="form-group">

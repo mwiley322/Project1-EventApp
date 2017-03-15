@@ -19,6 +19,10 @@ button:focus {
   outline: 0 !important;
 }
 
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+
 .thumbnail {
   max-height: 15vw;
 }

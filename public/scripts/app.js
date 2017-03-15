@@ -20,6 +20,41 @@ $(document).ready(function() {
       multidate: false
     });
 
+    $( function autoSearch() {
+       var availableTags = [
+         "ActionScript",
+         "AppleScript",
+         "Asp",
+         "BASIC",
+         "C",
+         "C++",
+         "Clojure",
+         "COBOL",
+         "ColdFusion",
+         "Erlang",
+         "Fortran",
+         "Groovy",
+         "Haskell",
+         "Java",
+         "JavaScript",
+         "Lisp",
+         "Perl",
+         "PHP",
+         "Python",
+         "Ruby",
+         "Scala",
+         "Scheme"
+       ];
+
+       $("#tags").autocomplete({
+           minLength: 1,
+           source: availableTags,
+           select: function(event, ui) {
+             var selection = ui.item.value;
+             $('#tagsHere').append(selection);
+           }
+       });//closes tag function
+  }); //closes search function
 
 }); //closes DOM ready function
 
@@ -173,10 +208,10 @@ function handleSearchSubmit(e) {
 
   $.ajax({
     method: 'GET',
-    endpoint: '/api/events/?',
+    endpoint: '/api/keyword/?keyword=' + query,
     data: {
       type: 'keyword',
-      q: query
+      keyword: query
     },
     success: handleEventSearch,
     error: handleEventSearchError
@@ -187,7 +222,7 @@ function handleSearchSubmit(e) {
 
 
 function handleEventSearch(json) {
-  console.log('data searched', json);
+  console.log('BLARG ', json);
 }
 
 
