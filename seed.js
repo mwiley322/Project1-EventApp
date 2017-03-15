@@ -39,19 +39,21 @@ eventData.push({
 
 
 
-var sampleKeywords = [
-  { name: 'CSS' },
-  { name: 'JavaScript' },
-  { name: 'Developer' },
-  { name: 'Front End' },
-  { name: 'Bootstrap' },
-  { name: 'Ruby' },
-  { name: 'HTML' },
-  { name: 'Interview' },
-  { name: 'Algorithms' },
-  { name: 'UX' },
-  { name: 'Graphic Design' }
-];
+// var sampleKeywords = [
+//   { name: 'CSS' },
+//   { name: 'JavaScript' },
+//   { name: 'Developer' },
+//   { name: 'Front End' },
+//   { name: 'Bootstrap' },
+//   { name: 'Ruby' },
+//   { name: 'HTML' },
+//   { name: 'Interview' },
+//   { name: 'Algorithms' },
+//   { name: 'UX' },
+//   { name: 'Graphic Design' }
+// ];
+
+var sampleKeywords = ['CSS', 'JavaScript'];
 
 
 // add all keywords to each event

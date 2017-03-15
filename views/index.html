@@ -24,17 +24,23 @@
       <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
       <!--LINKS-->
+
+
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATeAxyhXyr0I8tbxRf8UNu3BeEWrycMHE&callback=myMap"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="../scripts/bootstrap-datepicker.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="../scripts/app.js"></script>
       <link rel="stylesheet" href="../styles/styles.css">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="../styles/datepicker.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <body>
-    <!--JUMBOTRON-->
+
+
+
     <div>
         <div class="container">
             <h1>TechSpace</h1>
@@ -53,14 +59,17 @@
       </div>
       <div class="col-lg-6">
         <!-- SEARCH FORM AND SUBMIT  -->
+
+
         <form class="navbar-form" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control eventSearchForm" placeholder="Search">
+          <div class="form-group ui-widget">
+            <input type="text" class="form-control" id="eventSearchForm" placeholder="Search">
             <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
           </div>
         </form>
       </div>
     </nav>
+
       <!-- Modal -->
       <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
         <div class="modal-dialog" role="document">
@@ -118,6 +127,13 @@
                     <label for="imageUrl" class="col-md-4 control-label">Event Image Upload</label>
                       <input type="file" class="col-md-4" id="imageUrl" onchange="onFileSelected(event)" name="imageUrl">
                   </div>
+                    <!-- keyword tag autocomplete selector-->
+                    <div class="ui-widget">
+                      <label for="tags">Add searchable keywords: </label>
+                      <input type="text" id="tags">
+                    </div>
+                    <div class="form-group" id="tagsHere">
+                    </div>
                   <!-- Textarea for description-->
                   <div class="form-group">
                     <label class="col-md-9 control-label" for="eventDescription">Event Description</label><br>
