@@ -42,18 +42,20 @@
     </div>
   <!--NAV BAR-->
     <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+      <!--button to trigger create new event modal-->
+      <button type="button" id="createNewEventBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEventModal">
+        Create Event
+      </button>
       <div class="navbar-header col-md-6">
       <!-- SEARCH FORM AND SUBMIT  -->
       <form class="navbar-form navbar-middle" role="search">
         <div class="form-group">
-          <!--button to trigger create new event modal-->
-          <button type="button" id="createNewEventBtn" class="btn btn-primary btn-md" data-toggle="modal" data-target="#newEventModal">
-            +
-          </button>
-          <input type="text" class="form-control" placeholder="Search">
-          <button type="submit" id="searchButton" class="btn btn-default">Submit</button>
+          <input type="text" class="form-control eventSearchForm" placeholder="Search">
+          <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
         </div>
       </form>
+    </div>
       <!-- Modal -->
       <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
         <div class="modal-dialog" role="document">
@@ -138,6 +140,7 @@
     <!--SIDE BAR -->
     <div class="col-lg-3 col-md-3 sidebar">
       <div id="datepicker"></div>
+      <button type="submit" id="searchByDateBtn" class="btn btn-default">Filter Events By Date</button>
     </div>
   </div>
   </body>

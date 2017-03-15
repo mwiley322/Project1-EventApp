@@ -21,6 +21,19 @@ function show(req, res) {
   }); //closes findById function
 } //closes show function
 
+// GET /api/events/?
+function search(req, res) {
+  var query = req.query
+  console.log('event search: ', query);
+  // db.Event.findById(eventId, function(err, foundEvent) {
+  //   if (err) {
+  //     res.sendStatus(204);
+  //   } else {
+  //     res.json(foundEvent);
+  //   } //closes else statement
+  // }); //closes findById function
+} //closes show function
+
 // POST /api/events
 function create(req, res) {
   var newEvent = new db.Event(req.body);

@@ -27,7 +27,7 @@ app.get('/api', controllers.api.index);
 //get all events
 app.get('/api/events', controllers.events.index);
 
-//get one event
+//get one event by specified parameters
 app.get('/api/events/:id', controllers.events.show);
 
 // create an event
