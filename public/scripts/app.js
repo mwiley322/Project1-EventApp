@@ -1,9 +1,5 @@
 console.log('app.js is loaded!');
-
-
 var myTags = [];
-
-
 var availableTags = [
   "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
   "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Picnic", "Beer", "Party", "Lecture", "Education",
@@ -14,11 +10,11 @@ var availableTags = [
   "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving", "dogs", "cats", "Other", "Veterans", "Github",
   "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL"
 ];
-
+var $searchForm;
 
 $(document).ready(function() {
   console.log('dom is loaded!');
-
+  $searchForm = $('#eventSearchForm');
 
     $.ajax({
         method: 'GET',
@@ -27,20 +23,38 @@ $(document).ready(function() {
         error: handleError
     }); //closes ajax get request
 
-
-    // Google Maps Start
-
-      // end of google maps
     $('#createEvent').on('click', handleNewEventSubmit);
 
-    $('#eventSearchButton').on('click', handleSearchSubmit);
+    $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
+        e.preventDefault();
+        // if (query === "") {
+        //   alert('Please make a keyword selection!');
+        //   return;
+        // }
+        ajaxKeywordSearch();
+
+        // $loading.show(); // show loading gif
+
+        // $.ajax({
+        //   type: 'GET',
+        //   url: '/api/keywordSearch?q=' + query,
+        //   // data: {
+        //   //   type: 'q',
+        //   //   keyword: query
+        //   // },
+        //   success: handleEventSearch,
+        //   error: handleEventSearchError
+        // });//closes ajax search request
+
+        // $searchForm.val(''); // clear the form fields
+    });
+
     $('#datepicker').datepicker({
       format: "mm/dd/yyyy",
       multidate: false
     });
 
-
-    $( function autoSearch() {
+    $(function autoSearch() {
        $("#tags").autocomplete({
          minLength: 1,
          source: availableTags,
@@ -68,16 +82,17 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
-    // Google Maps Start
+// Google Maps Start
   function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: -33.8688,
-      lng: 151.2195
-    },
-    zoom: 13
-  });
-}
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: -33.8688,
+        lng: 151.2195
+      },
+      zoom: 13
+    });
+  }
+
 //   var input =  (
 //     document.getElementById('pac-input'));
 //     var types = document.getElementById('type-selector');
@@ -139,7 +154,6 @@ $(document).ready(function() {
 //   setupClickListener('changetype-geocode', ['geocode']);
 // }
 
-
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
     renderEvent(event);
@@ -150,8 +164,6 @@ function renderEvent(event) {
   keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
     return keyWord.name;
   });
-
-
   event.keywords = keyWordArray.join(', ');
   var eventHtml = (`
         <div class="panel panel-default">
@@ -249,38 +261,35 @@ function renderEvent(event) {
         </div>
     <!-- end one event -->
   `);
-
   $('.eventContainer').prepend(eventHtml);
 } //closes renderEvent function
-function handleSearchSubmit(e) {
-  var $searchForm = $('#eventSearchForm');
-  e.preventDefault();
-  var query = $searchForm.val();
-  console.log('You tried to search for', query);
-  if (query === "") {
-    $searchForm.focus();
-    return;
-  }
 
-  // $loading.show(); // show loading gif
+
+function ajaxKeywordSearch() {
+  console.log('IN AJAX SEARCH FUNCTION');
+  var keywordSearchData = $searchForm.val();
+  // var userData = $searchForm.val();
+  // var keywordSearchData = $(this).serialize();
+  // var keywordSearchData = $(this).serialize();
+  var endpoint = '/api/keywordSearch?q=';
   $.ajax({
     method: 'GET',
-    endpoint: '/api/keyword/?keyword=' + query,
-    data: {
-      type: 'keyword',
-      keyword: query
-    },
+    url: endpoint,
+    data: keywordSearchData,
+    dataType: 'json',
     success: handleEventSearch,
     error: handleEventSearchError
-  });//closes ajax search request
-  $searchForm.val(''); // clear the form fields
-} //closes handleSearchSubmit
-function handleEventSearch(json) {
-  console.log('BLARG ', json);
+  }); //closes ajax function
 }
 
 
-
+function handleEventSearch(successJson) {
+  console.log('BLARG ', successJson);
+  // successJson.data.forEach(function (gif) {
+  //   var url = gif.images.fixed_height.url;
+  //   $(".gif-gallery").append($('<img src='+ url +' />'));
+  // }); //closes forEach function
+}
 
 function handleNewEventSubmit(e) {
   e.preventDefault();
@@ -327,10 +336,12 @@ function handleNewEventSubmit(e) {
       renderEvent(data);
     }); //closes post request
 } //closes function
+
 function handleError(err) {
   console.log('error loading events!: ', err);
   $('.eventContainer').append('Sorry, there was a problem loading events.');
 }
+
 function handleEventSearchError(err) {
   console.log('error searching for an event: ', err);
 }

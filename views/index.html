@@ -37,7 +37,7 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="../styles/datepicker.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+</head>
 <body>
     <div>
       <div class="container">
@@ -57,11 +57,9 @@
       </div>
       <div class="col-lg-6">
         <!-- SEARCH FORM AND SUBMIT  -->
-
-
         <form class="navbar-form" role="search">
           <div class="form-group ui-widget">
-            <input type="text" class="form-control" id="eventSearchForm" placeholder="Begin typing to search...">
+            <input type="text" class="form-control" id="eventSearchForm" name="keywords" placeholder="Begin typing to search...">
             <button type="submit" id="eventSearchButton" class="btn btn-default">Go!</button>
           </div>
         </form>
@@ -164,7 +162,7 @@
       <div id="datepicker"></div>
     <div id="map">
     </div>
-</div>
+    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
 </div>
 </body>
 
