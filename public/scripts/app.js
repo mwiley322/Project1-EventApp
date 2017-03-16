@@ -26,15 +26,8 @@ $(document).ready(function() {
     $('#createEvent').on('click', handleNewEventSubmit);
 
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
-        e.preventDefault();
-        // if ($searchForm === "") {
-        //   alert('Please make a keyword selection!');
-        //   return;
-        // }
-        ajaxKeywordSearch();
-
-        // $loading.show(); // show loading gif
-
+      e.preventDefault();
+      ajaxKeywordSearch();
     });
 
     $('#datepicker').datepicker({
@@ -70,7 +63,6 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
-// Google Maps Start
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {
@@ -78,8 +70,8 @@ $(document).ready(function() {
         lng: 151.2195
       },
       zoom: 13
-    });
-  }
+    }); //closes Map function
+  }//closes initMap function
 
 //   var input =  (
 //     document.getElementById('pac-input'));
@@ -144,111 +136,115 @@ $(document).ready(function() {
 
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
-    var eventHtml = (`
-          <div class="panel panel-default">
-            <div class="panel-body">
-            <!-- begin event internal row -->
-              <div class='row'>
-                <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                  <img src="${event.imageUrl}" class="img-responsive myImage" alt="Image for the event titled ${event.eventName}" title="${event.eventName}">
-                 </div>
-                <div class="col-md-9 col-xs-12">
-                  <ul>
-                    <li>
-                      <h4 class='inline-header'>${event.eventName}</h4>
-                    </li>
-                    <li>
-                      <a class="openmodal" href="#contact"  data-toggle="modal" data-id="Peggy Guggenheim Collection - Venice"><span class='eventLocation'>${event.location}</span></a>
-        <div class="modal fade" id="contact" role="dialog" >
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content" id="back" >
-                      <div class="modal-header"> <h4>Location<h4></div>
-                  <div class="modal-body">
-                      <div id="map"></div>
-                  </div>
-                  <div class="modal-footer">
-                      <a class="btn btn-default" data-dismiss="modal">Close</a>
-                  </div>
-              </div>
-        </div>
-                      <span class='eventTime pull-right'>&#160;${event.time}</span>
-                      <span class='eventDate pull-right'>${event.date}</span>
-                    </li>
-                    <li>
-                      <span class='eventDescription'>${event.description}</span>
-                    </li>
-                  </ul>
-                  <div class="col-xs-6">
-                    <span class='event-date'>${event.peopleInterested} people interested</span>
-                  </div>
-                  <div class="col-xs-6">
-                    <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
-                      Learn more
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="form-horizontal">
-                            <div class="row event">
-                              <div class="col-md-10 col-md-offset-1">
-
-                                  <!-- begin event internal row -->
-                                      <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                                        <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
-                                      </div>
-                                      <div class="col-md-9 col-xs-12">
-                                        <ul class="list-group">
-
-                                            <h4 class='inline-header'>${event.eventName}</h4>
-                                          </li>
-
-                                            <span class='eventLocation'>${event.location}</span>
-                                            <span class='eventTime pull-right'>&#160;${event.time}</span>
-                                            <span class='eventDate pull-right'>${event.date}</span>
-                                          </li>
-
-                                            <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
-                                          </li>
-
-                                            <span class='event-date'>19 people interested</span>
-                                          </li>
-
-                                            <h4 class="inline-header">Keywords:</h4>
-                                            <span class='event-keywords'>${event.keywords}</span>
-                                          </li>
-                                        </ul>
-
-                          <div class="form-group modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                  </div>
-                </div>
-                </div>
-              </div>
-              <!-- end of event internal row -->
-              </div>
-            </div>
-          </div>
-      <!-- end one event -->
-    `);
-    $('.eventContainer').prepend(eventHtml);
+    renderEvent(event);
   }); //closes foreach
 }//closes rendermult.
 
-function renderSearchResults(successJson) {
-  console.log('IN RENDER SEARCH RESULTS');
-  $('.eventContainer').empty();
-  renderMultipleEvents(successJson);
-} //closes renderSearchResults function
+function renderEvent(event) {
+  var eventHtml = (`
+        <div class="panel panel-default">
+          <div class="panel-body">
+          <!-- begin event internal row -->
+            <div class='row'>
+              <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                <img src="${event.imageUrl}" class="img-responsive myImage" alt="Image for the event titled ${event.eventName}" title="${event.eventName}">
+               </div>
+              <div class="col-md-9 col-xs-12">
+                <ul>
+                  <li>
+                    <h4 class='inline-header'>${event.eventName}</h4>
+                  </li>
+                  <li>
+                    <a class="openmodal" href="#contact"  data-toggle="modal" data-id="Peggy Guggenheim Collection - Venice"><span class='eventLocation'>${event.location}</span></a>
+      <div class="modal fade" id="contact" role="dialog" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="back" >
+                    <div class="modal-header"> <h4>Location<h4></div>
+                <div class="modal-body">
+                    <div id="map"></div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+      </div>
+                    <span class='eventTime pull-right'>&#160;${event.time}</span>
+                    <span class='eventDate pull-right'>${event.date}</span>
+                  </li>
+                  <li>
+                    <span class='eventDescription'>${event.description}</span>
+                  </li>
+                </ul>
+                <div class="col-xs-6">
+                  <span class='event-date'>${event.peopleInterested} people interested</span>
+                </div>
+                <div class="col-xs-6">
+                  <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
+                    Learn more
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal">
+                          <div class="row event">
+                            <div class="col-md-10 col-md-offset-1">
+
+                                <!-- begin event internal row -->
+                                    <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                                      <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
+                                    </div>
+                                    <div class="col-md-9 col-xs-12">
+                                      <ul class="list-group">
+
+                                          <h4 class='inline-header'>${event.eventName}</h4>
+                                        </li>
+
+                                          <span class='eventLocation'>${event.location}</span>
+                                          <span class='eventTime pull-right'>&#160;${event.time}</span>
+                                          <span class='eventDate pull-right'>${event.date}</span>
+                                        </li>
+
+                                          <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
+                                        </li>
+
+                                          <span class='event-date'>19 people interested</span>
+                                        </li>
+
+                                          <h4 class="inline-header">Keywords:</h4>
+                                          <span class='event-keywords'>${event.keywords}</span>
+                                        </li>
+                                      </ul>
+
+                        <div class="form-group modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <!-- end of event internal row -->
+            </div>
+          </div>
+        </div>
+    <!-- end one event -->
+  `);
+  $('.eventContainer').prepend(eventHtml);
+}
+//
+// function renderSearchResults(successJson) {
+//   console.log('IN RENDER SEARCH RESULTS');
+//   $('.eventContainer').empty();
+//   renderMultipleEvents(successJson);
+// } //closes renderSearchResults function
 
 function ajaxKeywordSearch() {
   console.log('IN AJAX SEARCH FUNCTION');
@@ -259,7 +255,7 @@ function ajaxKeywordSearch() {
     url: endpoint,
     data: keywordSearchData,
     dataType: 'json',
-    success: renderSearchResults,
+    success: renderMultipleEvents,
     error: handleEventSearchError
   }); //closes ajax function
 }

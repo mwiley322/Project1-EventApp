@@ -11,7 +11,7 @@ var EventSchema = new Schema ({
   externalResource: { type: String, default: '' },
   posterEmail: String,
   keywords: [ String ], //searchable . required.
-  imageUrl: String
+  imageUrl: { type: String, default: 'images/NoImageFound.jpg' }
 });
 
 //our model to create events
