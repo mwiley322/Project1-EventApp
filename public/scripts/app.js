@@ -22,7 +22,12 @@ $(document).ready(function() {
 
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
       e.preventDefault();
+      if ($searchForm.val() === ''){
+        $searchForm.focus();
+        return;
+      }
       ajaxKeywordSearch();
+      $searchForm.val('');
     });
 
     $('#datepicker').datepicker({
@@ -172,7 +177,7 @@ function renderEvent(event) {
                     </div>
                     <div class="col-xs-6">
                       <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
-                        Learn more
+                        Details
                       </button>
                       <!-- Modal -->
                       <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
@@ -187,7 +192,7 @@ function renderEvent(event) {
                                 <div class="col-md-10 col-md-offset-1">
                                     <!-- begin event internal row -->
                                         <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                                          <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
+                                          <img src="${event.imageUrl}" class="responsive-img" alt="event image">
                                         </div>
                                         <div class="col-md-9 col-xs-12">
                                           <ul class="list-group">
@@ -195,8 +200,8 @@ function renderEvent(event) {
                                               <span class='eventLocation'>${event.location}</span>
                                               <span class='eventTime pull-right'>&#160;${event.time}</span>
                                               <span class='eventDate pull-right'>${event.date}</span>
-                                              <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
-                                              <span class='event-date'>19 people interested</span>
+                                              <span class='eventDescription'>${event.description}</span>
+                                              <span class='event-date'>${event.peopleInterested} people interested</span>
                                               <h4 class="inline-header">Keywords:</h4>
                                               <span class='event-keywords'>${event.keywords}</span>
                                           </ul>

@@ -59,7 +59,7 @@
         <!-- SEARCH FORM AND SUBMIT  -->
         <form class="navbar-form" role="search">
           <div class="form-group ui-widget">
-            <input type="text" class="form-control" id="eventSearchForm" name="keyword" placeholder="Type a keyword...">
+            <input type="text" class="form-control" id="eventSearchForm" name="keyword" data-error="required text, bro" placeholder="Type a keyword..." required>
             <button type="submit" id="eventSearchButton" class="btn btn-default">Search</button>
           </div>
         </form>
@@ -133,11 +133,9 @@
                     <div class="form-group" id="tagsHere">
                     </div>
                   <!-- Textarea for description-->
-                  <div class="form-group">
-                    <label class="col-md-9 control-label" for="eventDescription">Event Description</label><br>
-                    <div class="col-md-9">
-                      <textarea class="form-control" id="eventDescription" name="description" placeholder="What is the event about?"></textarea>
-                    </div>
+                  <div class="form-group col-lg-9">
+                    <label for="eventDescription">What is your event about?</label>
+                    <textarea class="form-control" id="eventDescription" name="description" rows="3"></textarea>
                   </div>
                 </fieldset>
             <div class="form-group modal-footer">
