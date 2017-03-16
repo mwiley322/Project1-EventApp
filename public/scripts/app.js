@@ -20,6 +20,8 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
+    $('.mainHeader').on('click', loadAllEvents);
+
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
       e.preventDefault();
       if ($searchForm.val() === ''){
@@ -64,14 +66,17 @@ $(document).ready(function() {
 }); //closes DOM ready function
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: -33.8688,
-        lng: 151.2195
-      },
-      zoom: 13
-    }); //closes Map function
-  }//closes initMap function
+  var myLatLng = {lat: 37.7749295, lng: -122.4194155};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'San Francisco, CA.'
+  });//closes marker function
+}//closes initMap function
 
 //   var input =  (
 //     document.getElementById('pac-input'));
