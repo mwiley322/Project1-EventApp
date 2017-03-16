@@ -16,37 +16,18 @@ $(document).ready(function() {
   console.log('dom is loaded!');
   $searchForm = $('#eventSearchForm');
 
-    $.ajax({
-        method: 'GET',
-        url: '/api/events',
-        success: renderMultipleEvents,
-        error: handleError
-    }); //closes ajax get request
+    loadAllEvents();
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
-        e.preventDefault();
-        // if (query === "") {
-        //   alert('Please make a keyword selection!');
-        //   return;
-        // }
-        ajaxKeywordSearch();
-
-        // $loading.show(); // show loading gif
-
-        // $.ajax({
-        //   type: 'GET',
-        //   url: '/api/keywordSearch?q=' + query,
-        //   // data: {
-        //   //   type: 'q',
-        //   //   keyword: query
-        //   // },
-        //   success: handleEventSearch,
-        //   error: handleEventSearchError
-        // });//closes ajax search request
-
-        // $searchForm.val(''); // clear the form fields
+      e.preventDefault();
+      if ($searchForm.val() === ''){
+        $searchForm.focus();
+        return;
+      }
+      ajaxKeywordSearch();
+      $searchForm.val('');
     });
 
     $('#datepicker').datepicker({
@@ -82,16 +63,15 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
-// Google Maps Start
-  function initMap() {
+function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {
         lat: -33.8688,
         lng: 151.2195
       },
       zoom: 13
-    });
-  }
+    }); //closes Map function
+  }//closes initMap function
 
 //   var input =  (
 //     document.getElementById('pac-input'));
@@ -154,116 +134,122 @@ $(document).ready(function() {
 //   setupClickListener('changetype-geocode', ['geocode']);
 // }
 
+function loadAllEvents() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/events',
+    success: renderMultipleEvents,
+    error: handleCreateError
+  }); //closes ajax get request
+}
+
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
     renderEvent(event);
   }); //closes foreach
 }//closes rendermult.
+
 function renderEvent(event) {
-  var keyWordArray = event.keywords;
-  keyWordArray = keyWordArray.map( function ripActualKeywordsOut(keyWord){
-    return keyWord.name;
-  });
-  event.keywords = keyWordArray.join(', ');
   var eventHtml = (`
-        <div class="panel panel-default">
-          <div class="panel-body">
-          <!-- begin event internal row -->
-            <div class='row'>
-              <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
-               </div>
-              <div class="col-md-9 col-xs-12">
-                <ul>
-                  <li>
-                    <h4 class='inline-header'>${event.eventName}</h4>
-                  </li>
-                  <li>
-                    <a class="openmodal" href="#contact"  data-toggle="modal" data-id="Peggy Guggenheim Collection - Venice"><span class='eventLocation'>${event.location}</span></a>
-      <div class="modal fade" id="contact" role="dialog" >
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content" id="back" >
-                    <div class="modal-header"> <h4>Location<h4></div>
-                <div class="modal-body">
-                    <div id="map"></div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-default" data-dismiss="modal">Close</a>
-                </div>
-            </div>
-      </div>
-                    <span class='eventTime pull-right'>&#160;${event.time}</span>
-                    <span class='eventDate pull-right'>${event.date}</span>
-                  </li>
-                  <li>
-                    <span class='eventDescription'>${event.description}</span>
-                  </li>
-                </ul>
-                <div class="col-xs-6">
-                  <span class='event-date'>${event.peopleInterested} people interested</span>
-                </div>
-                <div class="col-xs-6">
-                  <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
-                    Learn more
-                  </button>
-                  <!-- Modal -->
-                  <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                          <form class="form-horizontal">
-                          <div class="row event">
-                            <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+              <div class="panel-body">
+              <!-- begin event internal row -->
+                <div class='row'>
+                  <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                    <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
+                   </div>
+                  <div class="col-md-9 col-xs-12">
+                    <ul>
+                      <li>
+                        <h4 class='inline-header'>${event.eventName}</h4>
+                      </li>
+                      <li>
+                      <span class='eventLocation'>${event.location}</span>
+                        <span class='eventTime pull-right'>&#160;${event.time}</span>
+                        <span class='eventDate pull-right'>${event.date}</span>
+                      </li>
+                      <li>
+                        <span class='eventDescription'>${event.description}</span>
+                      </li>
+                    </ul>
+                    <div class="col-xs-6">
+                      <span class='event-date'>${event.peopleInterested} people interested</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
+                        Details
+                      </button>
+                      <!-- Modal -->
+                      <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form-horizontal">
+                              <div class="row event">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <!-- begin event internal row -->
+                                        <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                                          <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                                        </div>
+                                        <div class="col-md-9 col-xs-12">
+                                          <ul class="list-group">
+                                              <h4 class='inline-header'>${event.eventName}</h4>
+                                              <span class='eventLocation'>${event.location}</span>
+                                              <span class='eventTime pull-right'>&#160;${event.time}</span>
+                                              <span class='eventDate pull-right'>${event.date}</span>
+                                              <span class='eventDescription'>${event.description}</span>
+                                              <span class='event-date'>${event.peopleInterested} people interested</span>
+                                              <h4 class="inline-header">Keywords:</h4>
+                                              <span class='event-keywords'>${event.keywords}</span>
+                                          </ul>
 
-                                <!-- begin event internal row -->
-                                    <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                                      <img src="http://wp.streetwise.co/wp-content/blogs.dir/2/files/2015/12/Ladies_Learning_Code_event_November_26_2011-630x420.jpg" class="responsive-img" alt="event image">
-                                    </div>
-                                    <div class="col-md-9 col-xs-12">
-                                      <ul class="list-group">
+                            <div class="form-group modal-footer">
 
-                                          <h4 class='inline-header'>${event.eventName}</h4>
-                                        </li>
-
-                                          <span class='eventLocation'>${event.location}</span>
-                                          <span class='eventTime pull-right'>&#160;${event.time}</span>
-                                          <span class='eventDate pull-right'>${event.date}</span>
-                                        </li>
-
-                                          <span class='eventDescription'>Hello students! Our next event will be held at 1-5PM. Chime in on this issue to join us as a mentor or student for this event!</span>
-                                        </li>
-
-                                          <span class='event-date'>19 people interested</span>
-                                        </li>
-
-                                          <h4 class="inline-header">Keywords:</h4>
-                                          <span class='event-keywords'>${event.keywords}</span>
-                                        </li>
-                                      </ul>
-
-                        <div class="form-group modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                  </div>
                     </div>
                   </div>
-              </div>
+                  </div>
+                </div>
+                <!-- end of event internal row -->
                 </div>
               </div>
-              </div>
             </div>
-            <!-- end of event internal row -->
-            </div>
-          </div>
-        </div>
-    <!-- end one event -->
+        <!-- end one event -->
   `);
   $('.eventContainer').prepend(eventHtml);
-} //closes renderEvent function
+}
 
+function noSearchResults() {
+  var noResultsHtml = (`
+    <div class="col-lg-12 text-center">
+      <h2>SNAP CRACKLE POP!</h2>
+      <h4>No search results match</h4>
+      <p>You will be redirected in 3 seconds</p>
+    </div>
+  `);
+  $('.eventContainer').prepend(noResultsHtml);
+  var timer = setTimeout(function() {
+    $('.eventContainer').empty();
+    loadAllEvents() }, 3000);
+}//closes noSearchResults function
+
+function renderSearchResults(successJson) {
+  console.log('IN RENDER SEARCH RESULTS', successJson.length);
+  $('.eventContainer').empty();
+  if (successJson.length === 0) {
+    noSearchResults();
+  } else {
+    renderMultipleEvents(successJson);
+  } //closes else statement
+} //closes renderSearchResults function
 
 function ajaxKeywordSearch() {
   console.log('IN AJAX SEARCH FUNCTION');
@@ -274,18 +260,9 @@ function ajaxKeywordSearch() {
     url: endpoint,
     data: keywordSearchData,
     dataType: 'json',
-    success: handleEventSearch,
+    success: renderSearchResults,
     error: handleEventSearchError
   }); //closes ajax function
-}
-
-
-function handleEventSearch(successJson) {
-  console.log('BLARG ', successJson);
-  // successJson.data.forEach(function (gif) {
-  //   var url = gif.images.fixed_height.url;
-  //   $(".gif-gallery").append($('<img src='+ url +' />'));
-  // }); //closes forEach function
 }
 
 function handleNewEventSubmit(e) {
@@ -328,13 +305,14 @@ function handleNewEventSubmit(e) {
       $desc.val('');
       $imageUrl.val('');
       myTags = [];
+      $('#tagsHere').empty();
       // close modal
       $newEventModal.modal('hide');
       renderEvent(data);
     }); //closes post request
 } //closes function
 
-function handleError(err) {
+function handleCreateError(err) {
   console.log('error loading events!: ', err);
   $('.eventContainer').append('Sorry, there was a problem loading events.');
 }
