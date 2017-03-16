@@ -20,6 +20,8 @@ $(document).ready(function() {
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
+    $('.mainHeader').on('click', loadAllEvents);
+
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
       e.preventDefault();
       if ($searchForm.val() === ''){
@@ -64,14 +66,17 @@ $(document).ready(function() {
 }); //closes DOM ready function
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: -33.8688,
-        lng: 151.2195
-      },
-      zoom: 13
-    }); //closes Map function
-  }//closes initMap function
+  var myLatLng = {lat: 37.7749295, lng: -122.4194155};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'San Francisco, CA.'
+  });//closes marker function
+}//closes initMap function
 
 //   var input =  (
 //     document.getElementById('pac-input'));
@@ -227,20 +232,6 @@ function renderEvent(event) {
   $('.eventContainer').prepend(eventHtml);
 }
 
-function noSearchResults() {
-  var noResultsHtml = (`
-    <div class="col-lg-12 text-center">
-      <h2>SNAP CRACKLE POP!</h2>
-      <h4>No search results match</h4>
-      <p>You will be redirected in 3 seconds</p>
-    </div>
-  `);
-  $('.eventContainer').prepend(noResultsHtml);
-  var timer = setTimeout(function() {
-    $('.eventContainer').empty();
-    loadAllEvents() }, 3000);
-}//closes noSearchResults function
-
 function renderSearchResults(successJson) {
   console.log('IN RENDER SEARCH RESULTS', successJson.length);
   $('.eventContainer').empty();
@@ -313,10 +304,43 @@ function handleNewEventSubmit(e) {
 } //closes function
 
 function handleCreateError(err) {
-  console.log('error loading events!: ', err);
-  $('.eventContainer').append('Sorry, there was a problem loading events.');
+  var createErrorHtml = (`
+    <div class="col-lg-12 text-center">
+      <h2>WOOPSY DAISY!</h2>
+      <h4>There was a problem creating your new event.</h4>
+      <p>We will try again in 3 seconds</p>
+    </div>
+  `);
+  $('.eventContainer').prepend(createErrorHtml);
+  var timer = setTimeout(function() {
+    $('.eventContainer').empty();
+    window.location.reload() }, 3000);
 }
 
 function handleEventSearchError(err) {
-  console.log('error searching for an event: ', err);
+  var searchErrorHtml = (`
+    <div class="col-lg-12 text-center">
+      <h2>UH OH SPAGHETTIOS!</h2>
+      <h4>There was a problem conducting your search.</h4>
+      <p>You will be redirected home in 3 seconds</p>
+    </div>
+  `);
+  $('.eventContainer').prepend(searchErrorHtml);
+  var timer = setTimeout(function() {
+    $('.eventContainer').empty();
+    loadAllEvents() }, 3000);
 }
+
+function noSearchResults() {
+  var noResultsHtml = (`
+    <div class="col-lg-12 text-center">
+      <h2>SNAP CRACKLE POP!</h2>
+      <h4>No search results match</h4>
+      <p>You will be redirected in 3 seconds</p>
+    </div>
+  `);
+  $('.eventContainer').prepend(noResultsHtml);
+  var timer = setTimeout(function() {
+    $('.eventContainer').empty();
+    loadAllEvents() }, 3000);
+}//closes noSearchResults function

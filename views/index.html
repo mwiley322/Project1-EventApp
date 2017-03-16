@@ -1,68 +1,55 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Tech events in your area</title>
-
-      <!--FAVICON-->
-      <link rel="apple-touch-icon" sizes="57x57" href="Favicon/apple-icon-57x57.png">
-      <link rel="apple-touch-icon" sizes="60x60" href="Favicon/apple-icon-60x60.png">
-      <link rel="apple-touch-icon" sizes="72x72" href="Favicon/apple-icon-72x72.png">
-      <link rel="apple-touch-icon" sizes="76x76" href="Favicon/apple-icon-76x76.png">
-      <link rel="apple-touch-icon" sizes="114x114" href="Favicon/apple-icon-114x114.png">
-      <link rel="apple-touch-icon" sizes="120x120" href="Favicon/apple-icon-120x120.png">
-      <link rel="apple-touch-icon" sizes="144x144" href="Favicon/apple-icon-144x144.png">
-      <link rel="apple-touch-icon" sizes="152x152" href="Favicon/apple-icon-152x152.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-icon-180x180.png">
-      <link rel="icon" type="image/png" sizes="192x192"  href="Favicon/android-icon-192x192.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="96x96" href="Favicon/favicon-96x96.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
-      <link rel="manifest" href="Favicon/manifest.json">
-      <meta name="msapplication-TileColor" content="#ffffff">
-      <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png">
-      <meta name="theme-color" content="#ffffff">
-      <!--LINKS-->
-
-
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <script src="../scripts/bootstrap-datepicker.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="../scripts/app.js"></script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
-      <link rel="stylesheet" href="../styles/styles.css">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <link rel="stylesheet" href="../styles/datepicker.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tech events in your area</title>
+  <!--FAVICON-->
+  <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="Favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
+  <link rel="manifest" href="Favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!--LINKS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../scripts/bootstrap-datepicker.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../scripts/app.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../styles/datepicker.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <div>
-      <div class="container">
-          <h1>TechSpace</h1>
-          <p>dev events in your area!</p>
-      </div>
+  <div>
+    <div class="container">
+      <h1 class="mainHeader">TechSpace</h1>
+      <p>dev events in your area!</p>
     </div>
-    <!--NAV BAR-->
+  </div>
+  <!--NAV BAR-->
+
     <nav class="navbar navbar-default" role="navigation">
-      <div class="col-lg-6">
-        <div class="row">
-          <!--button to trigger create new event modal-->
-          <button type="button" id="createNewEventBtn" class="btn btn-primary" data-toggle="modal" data-target="#newEventModal">
-            Create Event
-          </button>
-        </div>
-      </div>
       <div class="col-lg-6">
         <!-- SEARCH FORM AND SUBMIT  -->
         <form class="navbar-form" role="search">
-          <div class="form-group ui-widget">
+          <div class="form-group ui-widget searchHolder">
             <input type="text" class="form-control" id="eventSearchForm" name="keyword" data-error="required text, bro" placeholder="Type a keyword..." required>
             <button type="submit" id="eventSearchButton" class="btn btn-default">Search</button>
           </div>
         </form>
+      </div>
+      <div class="col-lg-6">
+        <div class="row">
+          <!--button to trigger create new event modal-->
+          <button type="button" id="createNewEventBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEventModal">
+            Create Event
+          </button>
+        </div>
       </div>
     </nav>
 
@@ -75,7 +62,7 @@
                 <legend class="modal-title" id="newEventModalLabel">Create a New Event</legend>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal">
+              <form class="form-horizontal" id="newEventForm">
                 <fieldset>
                   <!-- Text input for Event Name-->
                   <div class="form-group">
@@ -88,14 +75,14 @@
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="eventLocation">Location</label>
                     <div class="col-md-6">
-                      <input id="eventLocation" name="location" type="text" value="Golden Gate Park San Francisco,CA" class="form-control input-md">
+                      <input id="eventLocation" name="location" type="text" value="Golden Gate Park San Francisco,CA" class="form-control input-md" required>
                     </div>
                   </div>
                   <!-- Text input for poster's email-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="posterEmail">Your email address</label>
                     <div class="col-md-6">
-                      <input id="posterEmail" name="posterEmail" type="text" value="mwiley322@gmail.com" class="form-control input-md">
+                      <input id="posterEmail" name="posterEmail" type="text" value="mwiley322@gmail.com" class="form-control input-md" required>
                     </div>
                   </div>
                   <!-- Text input for date-->
@@ -103,11 +90,11 @@
                     <div class="row">
                       <label for="eventDate" class="col-md-4 control-label">Event Date and Time</label>
                       <div class="col-md-4">
-                        <input class="form-control" type="date" name="date" id="eventDate">
+                        <input class="form-control" type="date" name="date" id="eventDate" required>
                       </div>
                   <!-- Text input for time-->
                       <div class="col-md-4">
-                        <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md">
+                        <input id="eventTime" name="time" type="text" value="4:00PM" class="form-control input-md" required>
                       </div>
                     </div>
                   </div>
@@ -122,20 +109,20 @@
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="imageUrl">Event Image</label>
                     <div class="col-md-6">
-                      <input id="posterEmail" name="imageUrl" type="text" class="form-control input-md">
+                      <input id="imageUrl" name="imageUrl" type="text" class="form-control input-md">
                     </div>
                   </div>
                     <!-- keyword tag autocomplete selector-->
                     <div class="ui-widget">
                       <label for="tags">Add searchable keywords: </label>
-                      <input type="text" id="tags">
+                      <input type="text" id="tags" required>
                     </div>
                     <div class="form-group" id="tagsHere">
                     </div>
                   <!-- Textarea for description-->
                   <div class="form-group col-lg-9">
                     <label for="eventDescription">What is your event about?</label>
-                    <textarea class="form-control" id="eventDescription" name="description" rows="3"></textarea>
+                    <textarea class="form-control" id="eventDescription" name="description" rows="3" required></textarea>
                   </div>
                 </fieldset>
             <div class="form-group modal-footer">

@@ -5,6 +5,11 @@
 .mainDisplay {
   margin-left: 80px;
 }
+
+.mainHeader:hover {
+  font-size: 2.7em;
+}
+
 .eventContainer {
   overflow: scroll;
   height: 40vw;
@@ -35,7 +40,11 @@ ul.ui-autocomplete {
 }
 
 #createNewEventBtn {
-  margin: 10px 15px;
+  margin: .5vw 6vw;
+}
+
+.searchHolder {
+  margin-left: 4.5vw;
 }
 
 #map {
@@ -79,8 +88,7 @@ ul.ui-autocomplete {
   font-family: Roboto;
   font-size: 10px;
   font-weight: 300;
-
-       height:215px;
+  height:215px;
 }
 
 .controls {
