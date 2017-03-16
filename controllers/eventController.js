@@ -23,7 +23,7 @@ function show(req, res) {
 
 // GET /api/keywordSearch
 function search(req, res) {
-  console.log("WE ARE IN SEARCHKEYWORD FUNCTION", req.body.q);
+  console.log("WE ARE IN SEARCHKEYWORD FUNCTION", req.query.keywords);
   db.Event.find(req.query.q, function(err, matchedEvents){
     if (err)
       console.log('SEARCH FUNCTION ERROR: ', err)
