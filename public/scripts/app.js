@@ -16,12 +16,7 @@ $(document).ready(function() {
   console.log('dom is loaded!');
   $searchForm = $('#eventSearchForm');
 
-    $.ajax({
-        method: 'GET',
-        url: '/api/events',
-        success: renderMultipleEvents,
-        error: handleError
-    }); //closes ajax get request
+    loadAllEvents();
 
     $('#createEvent').on('click', handleNewEventSubmit);
 
@@ -63,7 +58,7 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
-  function initMap() {
+function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {
         lat: -33.8688,
@@ -133,6 +128,16 @@ $(document).ready(function() {
 //   setupClickListener('changetype-establishment', ['establishment']);
 //   setupClickListener('changetype-geocode', ['geocode']);
 // }
+
+function loadAllEvents() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/events',
+    success: renderMultipleEvents,
+    error: handleError
+  }); //closes ajax get request
+}
+
 
 function renderMultipleEvents(events) {
   events.forEach(function(event) {
@@ -239,12 +244,29 @@ function renderEvent(event) {
   `);
   $('.eventContainer').prepend(eventHtml);
 }
-//
-// function renderSearchResults(successJson) {
-//   console.log('IN RENDER SEARCH RESULTS');
-//   $('.eventContainer').empty();
-//   renderMultipleEvents(successJson);
-// } //closes renderSearchResults function
+
+function noSearchResults() {
+  var noResultsHtml = (`
+    <div class="col-lg-12 text-center">
+      <h2>SNAP CRACKLE POP!</h2>
+      <h4>No search results match</h4>
+      <p>You will be redirected in 3 seconds</p>
+    </div>
+  `);
+  $('.eventContainer').prepend(noResultsHtml);
+  var timer = setTimeout(function() {
+    loadAllEvents() }, 3000);
+}//closes noSearchResults function
+
+function renderSearchResults(successJson) {
+  console.log('IN RENDER SEARCH RESULTS', successJson.length);
+  $('.eventContainer').empty();
+  if (successJson.length === 0) {
+    noSearchResults();
+  } else {
+    renderMultipleEvents(successJson);
+  } //closes else statement
+} //closes renderSearchResults function
 
 function ajaxKeywordSearch() {
   console.log('IN AJAX SEARCH FUNCTION');
@@ -255,7 +277,7 @@ function ajaxKeywordSearch() {
     url: endpoint,
     data: keywordSearchData,
     dataType: 'json',
-    success: renderMultipleEvents,
+    success: renderSearchResults,
     error: handleEventSearchError
   }); //closes ajax function
 }
