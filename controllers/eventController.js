@@ -23,13 +23,15 @@ function show(req, res) {
 
 // GET /api/keywordSearch
 function search(req, res) {
-  console.log("WE ARE IN SEARCHKEYWORD FUNCTION", req.query.keywords);
-  db.Event.find(req.query.q, function(err, matchedEvents){
+  var searchQuery = req.query.keyword;
+  console.log("WE ARE IN SEARCHKEYWORD FUNCTION", searchQuery);
+  db.Event.find({keywords: searchQuery}, function(err, matchedEvents){
     if (err)
       console.log('SEARCH FUNCTION ERROR: ', err)
     else {
+      console.log('OUR MATCHED EVENTS ARE: ', matchedEvents);
       res.json(matchedEvents);
-    }
+    }//closes else statement
   });
 }
 
