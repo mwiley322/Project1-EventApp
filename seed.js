@@ -7,7 +7,7 @@ eventData.push({
     description: 'Learn javascript fundamentals',
     location: 'San Francisco, California',
     category: 'Javascript', //dropdown menu with pre-made selections
-    date: '2017, March 23',
+    date: '03/23/2017',
     time: '1:00pm',
     posterEmail: 'Lamar123@aol.com',
     externalResource: 'www.Stackoverflow.com', //show as links
@@ -18,7 +18,7 @@ eventData.push({
     eventName: 'Learn HTML & CSS',
     description: 'Learn the structure of web design',
     location: 'Berkeley, California',
-    date: '2017, May 17',
+    date: '05/17/2017',
     time: '9:00am',
     posterEmail: 'Lamar123@aol.com',
     imageUrl: 'https://uploads.toptal.io/blog/category/logo/364/CSS.png',
@@ -29,7 +29,7 @@ eventData.push({
     description: 'Get a better understanding of Javascript, different interview strategies, and considerations',
     location: 'San Jose, California',
     category: 'Javascript', //dropdown menu with pre-made selections
-    date: '2017, April 20',
+    date: '04/20/2017',
     time: '4:20pm',
     posterEmail: 'Lamar123@aol.com',
     externalResource: 'www.codeacademy.com', //show as links
