@@ -31,7 +31,7 @@ app.get('/api/events', controllers.events.index);
 app.get('/api/searchKeyword', controllers.events.searchKeyword);
 
 //search by date
-app.get('/api/searchDate?q=', controllers.events.searchDate);
+app.get('/api/searchDate', controllers.events.searchDate);
 
 //get one event by specified parameters
 app.get('/api/events/:id', controllers.events.show);
@@ -53,6 +53,3 @@ app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function() {
   console.log('TECHSPACE ON 3K!');
 });
-// app.listen(process.env.PORT || 3000, function () {
-//   console.log('So many fun things to do at host 3000!');
-// });
