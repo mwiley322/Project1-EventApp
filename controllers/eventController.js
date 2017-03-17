@@ -35,15 +35,6 @@ function search(req, res) {
   });
 }
 
-//
-//     var query = req.query.keyword;
-//     // db.Event.find(keywords: { "$in": [query]}).populate('')
-//     // .exec(function (err, matchFound) {
-//     //     if (err) { console.log(err); };
-//     //     console.log(matchFound);
-//     //     res.json(matchFound);
-//     // });
-// });
 
 // Search by event date
 // app.get('/api/searchDate', function searchByDate(req, res) {
