@@ -154,7 +154,7 @@ function renderEvent(event) {
                               <div class="row event">
                                 <div class="col-md-10 col-md-offset-1">
                                   <!-- begin event internal row -->
-                                  <div class="col-lg-12">
+                                  <div class="col-lg-8">
                                     <div class="row">
                                       <div class="thumbnail event-art">
                                         <img src="${event.imageUrl}" class="responsive-img" alt="event image">
