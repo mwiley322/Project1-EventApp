@@ -1,20 +1,44 @@
-.jumbotron {
-  height: 12vw;
+body {
+  color: #505050 !important;
+  font-family: "Ubuntu", sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 14px !important;
+}
+
+header {
+  width: 100%;
+  height: 4vw;
+  color: #337ab7;
+  padding-left: 5vw;
+}
+
+/*#eek {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+}*/
+
+nav {
+  background-color: #3da4d8 !important;
 }
 
 .mainDisplay {
-  margin-left: 80px;
+  margin-left: 4.7vw;
 }
 
 .mainHeader:hover {
   font-size: 2.7em;
 }
 
-.eventContainer {
-  overflow: scroll;
+.peopleInterested {
+  margin-left: 1.7vw;
+}
+
+/*.eventContainer {
   height: 40vw;
   margin-bottom: 5vw;
-}
+}*/
 
 li {
   list-style: none;
@@ -37,6 +61,7 @@ ul.ui-autocomplete {
   border-radius: 5px;
   margin-left: 30px;
   height: 40vw;
+  position: fixed;
 }
 
 #createNewEventBtn {
@@ -44,12 +69,13 @@ ul.ui-autocomplete {
 }
 
 .searchHolder {
-  margin-left: 4.5vw;
+  margin-left: 3.5vw;
 }
 
 #map {
   height:215px;
 }
+
 .controls {
    margin-top: 10px;
    border: 1px solid transparent;
@@ -89,46 +115,4 @@ ul.ui-autocomplete {
   font-size: 10px;
   font-weight: 300;
   height:215px;
-}
-
-.controls {
-       margin-top: 10px;
-       border: 1px solid transparent;
-       border-radius: 2px 0 0 2px;
-       box-sizing: border-box;
-       -moz-box-sizing: border-box;
-       height: 32px;
-       outline: none;
-       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-#pac-input {
-       background-color: #fff;
-       font-family: Roboto;
-       font-size: 15px;
-       font-weight: 300;
-       margin-left: 12px;
-       padding: 0 11px 0 13px;
-       text-overflow: ellipsis;
-       width: 300px;
-}
-
-#pac-input:focus {
-       border-color: #4d90fe;
-}
-
-.pac-container {
-       font-family: Roboto;
-}
-
-#type-selector {
-       color: #fff;
-       background-color: #4d90fe;
-       padding: 5px 11px 0px 11px;
-}
-
-#type-selector label {
-       font-family: Roboto;
-       font-size: 13px;
-       font-weight: 300;
 }

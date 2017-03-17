@@ -22,6 +22,11 @@ $(document).ready(function() {
 
     $('.mainHeader').on('click', loadAllEvents);
 
+    // $('td').on('click', function (){
+    //   var dateVal = $('#datepickerBig').datepicker('getDate').valueOf();
+    //   console.log(dateVal);
+    // });
+
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
       e.preventDefault();
       if ($searchForm.val() === ''){
@@ -32,7 +37,7 @@ $(document).ready(function() {
       $searchForm.val('');
     });
 
-    $('#datepicker').datepicker({
+    $('#datepickerBig').datepicker({
       format: "mm/dd/yyyy",
       multidate: false
     });
@@ -178,7 +183,7 @@ function renderEvent(event) {
                       </li>
                     </ul>
                     <div class="col-xs-6">
-                      <span class='event-date'>${event.peopleInterested} people interested</span>
+                      <span class='peopleInterested'>${event.peopleInterested} people interested</span>
                     </div>
                     <div class="col-xs-6">
                       <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
@@ -206,7 +211,7 @@ function renderEvent(event) {
                                               <span class='eventTime pull-right'>&#160;${event.time}</span>
                                               <span class='eventDate pull-right'>${event.date}</span>
                                               <span class='eventDescription'>${event.description}</span>
-                                              <span class='event-date'>${event.peopleInterested} people interested</span>
+                                              <span class='numPplInterested'>${event.peopleInterested} people interested</span>
                                               <h4 class="inline-header">Keywords:</h4>
                                               <span class='event-keywords'>${event.keywords}</span>
                                           </ul>
