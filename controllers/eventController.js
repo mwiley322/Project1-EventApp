@@ -35,18 +35,18 @@ function searchKeyword(req, res) {
   });
 }
 
-// function searchDate(req, res) {
-//   var searchQuery = req.query.keyword;
-//   console.log("WE ARE IN SEARCHDATE FUNCTION", searchQuery);
-//   db.Event.find({date: searchQuery}, function(err, matchedEvents){
-//     if (err)
-//       console.log('SEARCH FUNCTION ERROR: ', err)
-//     else {
-//       console.log('OUR MATCHED EVENTS ARE: ', matchedEvents);
-//       res.json(matchedEvents);
-//     }//closes else statement
-//   });
-// }
+function searchDate(req, res) {
+  var searchQuery = req.query.q;
+  console.log("WE ARE IN SEARCHDATE FUNCTION", req);
+  db.Event.find({date: searchQuery}, function(err, matchedEvents){
+    if (err)
+      console.log('SEARCH FUNCTION ERROR: ', err)
+    else {
+      console.log('OUR MATCHED EVENTS ARE: ', matchedEvents);
+      res.json(matchedEvents);
+    }//closes else statement
+  });
+}
 
 // POST /api/events
 function create(req, res) {
@@ -90,7 +90,7 @@ function destroy(req, res) {
 module.exports = {
   index: index,
   searchKeyword: searchKeyword,
-  // searchDate: searchDate,
+  searchDate: searchDate,
   show: show,
   create: create,
   update: update,

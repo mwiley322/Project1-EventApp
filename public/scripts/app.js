@@ -22,11 +22,6 @@ $(document).ready(function() {
 
     $('.mainHeader').on('click', loadAllEvents);
 
-    // $('td').on('click', function (){
-    //   var dateVal = $('#datepickerBig').datepicker('getDate').valueOf();
-    //   console.log(dateVal);
-    // });
-
     $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
       e.preventDefault();
       if ($searchForm.val() === ''){
@@ -38,8 +33,29 @@ $(document).ready(function() {
     });
 
     $('#datepickerBig').datepicker({
-      format: "mm/dd/yyyy",
+      format: "mm/dd/yy",
       multidate: false
+    });
+
+    $(function() {
+      $( "#datepickerBig" ).datepicker();
+      //selecting the button and adding a click event
+      $("#dateSearch").click(function() {
+        //alerting the value inside the textbox
+        var date = $("#datepickerBig").datepicker("getDate");
+        date = ($.datepicker.formatDate("mm/dd/yy", date));
+        console.log('IN AJAX DATE SEARCH FUNCTION', date);
+        var endpoint = '/api/searchDate?q=';
+        var dateSearchData = date;
+        $.ajax({
+         method: 'GET',
+         url: endpoint,
+         data: dateSearchData,
+         dataType: 'json',
+         success: renderSearchResults,
+         error: handleEventSearchError
+        }); //closes ajax function
+      });
     });
 
     $(function autoSearch() {
@@ -200,30 +216,28 @@ function renderEvent(event) {
                               <form class="form-horizontal">
                               <div class="row event">
                                 <div class="col-md-10 col-md-offset-1">
-                                    <!-- begin event internal row -->
-                                        <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                                          <img src="${event.imageUrl}" class="responsive-img" alt="event image">
-                                        </div>
-                                        <div class="col-md-9 col-xs-12">
-                                          <ul class="list-group">
-                                              <h4 class='inline-header'>${event.eventName}</h4>
-                                              <span class='eventLocation'>${event.location}</span>
-                                              <span class='eventTime pull-right'>&#160;${event.time}</span>
-                                              <span class='eventDate pull-right'>${event.date}</span>
-                                              <span class='eventDescription'>${event.description}</span>
-                                              <span class='numPplInterested'>${event.peopleInterested} people interested</span>
-                                              <h4 class="inline-header">Keywords:</h4>
-                                              <span class='event-keywords'>${event.keywords}</span>
-                                          </ul>
-
-                            <div class="form-group modal-footer">
-
+                                  <!-- begin event internal row -->
+                                  <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
+                                    <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                                  </div>
+                                  <div class="col-md-9 col-xs-12">
+                                    <ul class="list-group">
+                                        <h4 class='inline-header'>${event.eventName}</h4>
+                                        <span class='eventLocation'>${event.location}</span>
+                                        <span class='eventTime pull-right'>&#160;${event.time}</span>
+                                        <span class='eventDate pull-right'>${event.date}</span>
+                                        <span class='eventDescription'>${event.description}</span>
+                                        <span class='numPplInterested'>${event.peopleInterested} people interested</span>
+                                        <h4 class="inline-header">Keywords:</h4>
+                                        <span class='event-keywords'>${event.keywords}</span>
+                                    </ul>
+                                  <div class="form-group modal-footer">
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                           </div>
                         </div>
                       </div>
-                  </div>
+                    </div>
                     </div>
                   </div>
                   </div>
