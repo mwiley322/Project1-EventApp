@@ -4,8 +4,8 @@
   "description": "An app created for the tech community in which a user can explore, create, update, and delete upcoming events. ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node":"7.5.0"
