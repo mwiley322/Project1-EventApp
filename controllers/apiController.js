@@ -11,6 +11,12 @@ function index(req, res) {
         method: 'GET', path: '/api/events', description: 'Gets all events within the database'
       },
       {
+        method: 'GET', path: '/api/searchKeyword', description: 'Searches the database by keyword'
+      },
+      {
+        method: 'GET', path: '/api/searchDate', description: 'Searches the database by event date'
+      },
+      {
         method: 'GET', path: '/api/events/:id', description: 'Gets a single event based on parameters'
       },
       {

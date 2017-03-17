@@ -28,7 +28,10 @@ app.get('/api', controllers.api.index);
 app.get('/api/events', controllers.events.index);
 
 //search through keywords
-app.get('/api/keywordSearch', controllers.events.search);
+app.get('/api/searchKeyword', controllers.events.searchKeyword);
+
+//search by date
+// app.get('/api/searchDate', controllers.events.searchDate);
 
 //get one event by specified parameters
 app.get('/api/events/:id', controllers.events.show);

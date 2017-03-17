@@ -21,8 +21,8 @@ function show(req, res) {
   }); //closes findById function
 } //closes show function
 
-// GET /api/keywordSearch
-function search(req, res) {
+// GET /api/searchKeyword
+function searchKeyword(req, res) {
   var searchQuery = req.query.keyword;
   console.log("WE ARE IN SEARCHKEYWORD FUNCTION", searchQuery);
   db.Event.find({keywords: searchQuery}, function(err, matchedEvents){
@@ -35,36 +35,18 @@ function search(req, res) {
   });
 }
 
-
-// Search by event date
-// app.get('/api/searchDate', function searchByDate(req, res) {
-//     console.log(req.query);
-//     if (req.query == date) {
-//         db.Event.find().populate('')
-//         .exec(function(err, foundMatch) {
-//             if (err) {console.log('Nooooooo', err)}
-//             res.json(foundMatch);
-//         });
-//     } else {
-//         var dateQuery = req.query.date;
-//         db.Event.find({ date: dateQuery }).populate('')
-//         .exec(function(err, foundMatch) {
-//             if (err) {console.log('Err!', err)}
-//             res.json(foundMatch);
-//         });
-//     }
-// });
-
-
-//    function(err, foundEvent) {
-//     if (err) {
-//       res.sendStatus(204);
-//     } else {
-//       res.json(foundEvent);
-//     } //closes else statement
-//   }); //closes find function
-// } //closes show function
-//
+// function searchDate(req, res) {
+//   var searchQuery = req.query.keyword;
+//   console.log("WE ARE IN SEARCHDATE FUNCTION", searchQuery);
+//   db.Event.find({date: searchQuery}, function(err, matchedEvents){
+//     if (err)
+//       console.log('SEARCH FUNCTION ERROR: ', err)
+//     else {
+//       console.log('OUR MATCHED EVENTS ARE: ', matchedEvents);
+//       res.json(matchedEvents);
+//     }//closes else statement
+//   });
+// }
 
 // POST /api/events
 function create(req, res) {
@@ -107,7 +89,8 @@ function destroy(req, res) {
 
 module.exports = {
   index: index,
-  search: search,
+  searchKeyword: searchKeyword,
+  // searchDate: searchDate,
   show: show,
   create: create,
   update: update,

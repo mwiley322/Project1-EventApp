@@ -245,7 +245,7 @@ function renderSearchResults(successJson) {
 function ajaxKeywordSearch() {
   console.log('IN AJAX SEARCH FUNCTION');
   var keywordSearchData = $searchForm.serialize();
-  var endpoint = '/api/keywordSearch';
+  var endpoint = '/api/searchKeyword';
   $.ajax({
     method: 'GET',
     url: endpoint,
