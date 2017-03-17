@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//challenge: in real-world applications, you can prevent people from upvoting
+//multiple times on a single event using sessions/cookies
 var EventSchema = new Schema ({
   eventName: String, //req
   description: String, //req
@@ -11,7 +13,7 @@ var EventSchema = new Schema ({
   externalResource: { type: String, default: '' },
   posterEmail: String,
   keywords: [ String ], //searchable . required.
-  imageUrl: { type: String, default: 'images/NoImageFound.jpg' }
+  imageUrl: { type: String, default: 'images/NoImageFound.jpg' }//nice
 });
 
 //our model to create events

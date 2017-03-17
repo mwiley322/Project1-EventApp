@@ -1,17 +1,4 @@
 console.log('app.js is loaded!');
-var myTags = [];
-var availableTags = [
-  "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran","functions","HTML","CSS","WebGL","Bubble sort",
-  "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Picnic", "Beer", "Party", "Lecture", "Education",
-  "Meetup", "Formal", "MEAN","React","JS", "Full stack", "Interview","Algorithms","Front-end","Back-end", "Database",
-  "Web design","Graphic design","Design","LinkedIn","Resume","Computer science","Ruby", "Open bar", "La Croix","Rails",
-  "MongoDB","Networking","Mongoose","Job fair","Coding","General Assembly","Whiteboard","Hangout","Social","Brand","WDI 36",
-  "Web development","C+","Handlebars","SASS","Beginners","Intermediate","Advanced","Python","Ruby","Scala","Scheme",
-  "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving", "dogs", "cats", "Other", "Veterans", "Github",
-  "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL", "Mentor", "Robotics", "Rocket science",
-  "Science", "Startup", "Agile Development", "International", "Soylent", "Exercise", "Beards", "Ponies JS", "Datepicker"
-];
-var $searchForm;
 
 $(document).ready(function() {
   console.log('dom is loaded!');
@@ -84,6 +71,24 @@ $(document).ready(function() {
 
 }); //closes DOM ready function
 
+//maybe consider making a separate file for constants to cut down on file size
+var myTags = [];
+var availableTags = [
+  "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran","functions","HTML","CSS","WebGL","Bubble sort",
+  "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Picnic", "Beer", "Party", "Lecture", "Education",
+  "Meetup", "Formal", "MEAN","React","JS", "Full stack", "Interview","Algorithms","Front-end","Back-end", "Database",
+  "Web design","Graphic design","Design","LinkedIn","Resume","Computer science","Ruby", "Open bar", "La Croix","Rails",
+  "MongoDB","Networking","Mongoose","Job fair","Coding","General Assembly","Whiteboard","Hangout","Social","Brand","WDI 36",
+  "Web development","C+","Handlebars","SASS","Beginners","Intermediate","Advanced","Python","Ruby","Scala","Scheme",
+  "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving<3", "dogs", "cats", "Other", "Veterans", "Github",
+  "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL", "Mentor", "Robotics", "Rocket science",
+  "Science", "Startup", "Agile Development", "International", "Soylent", "Exercise", "Beards", "Ponies JS", "Datepicker"
+];
+
+var $searchForm;
+//this is great
+//mini map for each event with lat and long visible
+//https://www.google.com/maps/place/General+Assembly+San+Francisco/@37.7908769,-122.4034853,17z/data=!3m1!4b1!4m5!3m4!1s0x80858089e0535dc1:0x712e622328a7c068!8m2!3d37.7908727!4d-122.4012966
 function initMap() {
   var myLatLng = {lat: 37.7749295, lng: -122.4194155};
   var map = new google.maps.Map(document.getElementById('map'), {

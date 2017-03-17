@@ -24,6 +24,7 @@ function show(req, res) {
 // GET /api/searchKeyword
 function searchKeyword(req, res) {
   var searchQuery = req.query.keyword;
+  //remove console logs after pushing
   console.log("WE ARE IN SEARCHKEYWORD FUNCTION", searchQuery);
   db.Event.find({keywords: searchQuery}, function(err, matchedEvents){
     if (err)
@@ -35,6 +36,7 @@ function searchKeyword(req, res) {
   });
 }
 
+//AWESOME
 function searchDate(req, res) {
   var searchQuery = req._parsedOriginalUrl.query;
   console.log("WE ARE IN SEARCHDATE FUNCTION", searchQuery);
@@ -58,6 +60,7 @@ function create(req, res) {
   });
 }//closes create function
 
+//these aren't currently used, will maybe be used for users
 // PUT /api/events/:id
 function update(req, res) {
   console.log('event update: ', req.params);

@@ -1,4 +1,5 @@
 function index(req, res) {
+  //excellent documentation and style
   res.json({
     message: 'Welcome to TechSpace! Your main hub for local tech events',
     documentation_url: 'https://github.com/mwiley322/Project1-EventApp',
