@@ -46,6 +46,10 @@ app.delete('/api/events/:id', controllers.events.destroy);
 //  SERVER LISTENER
 ///////////////////
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('So many fun things to do at host 3000!');
+app.set('port', (process.env.PORT || 3000));
+app.listen(app.get('port'), function() {
+  console.log('TECHSPACE ON 3K!');
 });
+// app.listen(process.env.PORT || 3000, function () {
+//   console.log('So many fun things to do at host 3000!');
+// });
