@@ -9,7 +9,7 @@ var availableTags = [
   "Web development","C+","Handlebars","SASS","Beginners","Intermediate","Advanced","Python","Ruby","Scala","Scheme",
   "Hack Reactor", "ES6","Node.js", "Express", "Knitting", "Skydiving", "dogs", "cats", "Other", "Veterans", "Github",
   "Hackathon", "Dating", "iOS Development", "UX", "UI", "Photoshop", "Adobe", "SQL", "Mentor", "Robotics", "Rocket science",
-  "Science", "Startup", "Agile Development", "International"
+  "Science", "Startup", "Agile Development", "International", "Soylent", "Exercise", "Beards", "Ponies JS", "Datepicker"
 ];
 var $searchForm;
 
@@ -138,9 +138,9 @@ function renderEvent(event) {
                     <div class="col-xs-6">
                       <span class='peopleInterested'>${event.peopleInterested} people interested</span>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-12">
                       <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
-                        Details
+                        Event Details
                       </button>
                       <!-- Modal -->
                       <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
@@ -154,31 +154,36 @@ function renderEvent(event) {
                               <div class="row event">
                                 <div class="col-md-10 col-md-offset-1">
                                   <!-- begin event internal row -->
-                                  <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                                    <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                                  <div class="col-lg-12">
+                                    <div class="row">
+                                      <div class="thumbnail event-art">
+                                        <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <p>${event.keywords}</p>
+                                    </div>
                                   </div>
-                                  <div class="col-md-9 col-xs-12">
-                                    <ul class="list-group">
-                                        <h4 class='inline-header'>${event.eventName}</h4>
-                                        <span class='eventLocation'>${event.location}</span>
-                                        <span class='eventTime pull-right'>&#160;${event.time}</span>
-                                        <span class='eventDate pull-right'>${event.date}</span>
-                                        <span class='eventDescription'>${event.description}</span>
-                                        <span class='numPplInterested'>${event.peopleInterested} people interested</span>
-                                        <h4 class="inline-header">Keywords:</h4>
-                                        <span class='event-keywords'>${event.keywords}</span>
-                                    </ul>
-                                  <div class="form-group modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
+                                  <div class="col-lg-12">
+                                    <div class="row">
+                                      <h2 class='inline-header'>${event.eventName}</h2>
+                                      <p>${event.location}</p>
+                                      <p><b>${event.date}</b> ${event.time}</p>
+                                      <h4>Description</h4>
+                                      <p>${event.description}</p>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <span class="pull-left">Contact: <a href="mailto:${event.posterEmail}">${event.posterEmail}</a></span>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <a href="${event.externalResource}" target="_blank">
+                                          <button class="btn btn-primary pull-right">Event Link</button>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+
                 <!-- end of event internal row -->
                 </div>
               </div>

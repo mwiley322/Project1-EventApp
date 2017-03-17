@@ -7,7 +7,7 @@ var EventSchema = new Schema ({
   location: String,
   date: String,
   time: String,
-  peopleInterested: { type: Number, default: 0 }, //will update with a counter when people click on "interested" button
+  peopleInterested: { type: Number, default: Math.floor(Math.random() * 82) }, //will update with a counter when people click on "interested" button
   externalResource: { type: String, default: '' },
   posterEmail: String,
   keywords: [ String ], //searchable . required.

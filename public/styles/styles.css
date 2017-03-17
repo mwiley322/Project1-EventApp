@@ -35,11 +35,6 @@ nav {
   margin-left: 1.7vw;
 }
 
-/*.eventContainer {
-  height: 40vw;
-  margin-bottom: 5vw;
-}*/
-
 li {
   list-style: none;
 }
@@ -60,7 +55,7 @@ ul.ui-autocomplete {
   border: solid 1px #ddd;
   border-radius: 5px;
   margin-left: 30px;
-  height: 40vw;
+  height: 86vh;
   position: fixed;
 }
 
