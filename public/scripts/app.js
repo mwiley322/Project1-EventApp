@@ -1,4 +1,3 @@
-console.log('app.js is loaded!');
 var myTags = [];
 var availableTags = [
   "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran","functions","HTML","CSS","WebGL","Bubble sort",
@@ -14,7 +13,6 @@ var availableTags = [
 var $searchForm;
 
 $(document).ready(function() {
-  console.log('dom is loaded!');
 
   $searchForm = $('#eventSearchForm');
 
@@ -22,7 +20,10 @@ $(document).ready(function() {
 
   $('#createEvent').on('click', handleNewEventSubmit);
 
-  $('.mainHeader').on('click', loadAllEvents);
+  $('#headerImg').on('click', function takeUserHome() {
+    $('.eventContainer').empty();
+    loadAllEvents();
+  });
 
   $('#eventSearchButton').on('click', function handleSearchSubmit(e) {
     e.preventDefault();
@@ -76,7 +77,6 @@ $(document).ready(function() {
     source: availableTags,
     select: function(event, ui) {
       var selection = ui.item.value;
-      console.log(selection);
      }//closes select function
   });//closes autocomplete function
 
@@ -114,87 +114,93 @@ function renderMultipleEvents(events) {
 
 function renderEvent(event) {
   var eventHtml = (`
-            <div class="panel panel-default">
-              <div class="panel-body">
-              <!-- begin event internal row -->
-                <div class='row'>
-                  <div class="col-lg- col-md-3 col-xs-12 thumbnail event-art">
-                    <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
-                   </div>
-                  <div class="col-md-9 col-xs-12">
-                    <ul>
-                      <li>
-                        <h4 class='inline-header'>${event.eventName}</h4>
-                      </li>
-                      <li>
-                      <span class='eventLocation'>${event.location}</span>
-                        <span class='eventTime pull-right'>&#160;${event.time}</span>
-                        <span class='eventDate pull-right'>${event.date}</span>
-                      </li>
-                      <li>
-                        <span class='eventDescription'>${event.description}</span>
-                      </li>
-                    </ul>
-                    <div class="col-xs-6">
-                      <span class='peopleInterested'>${event.peopleInterested} people interested</span>
+    <!--START OF MAIN EVENT LISTING VIEW-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class='row'>
+          <div class="col-lg- col-md-3 col-xs-12 thumbnail">
+            <img src="${event.imageUrl}" class="responsive-img myImage" alt="event image">
+          </div>
+          <div class="col-md-9 col-xs-12">
+            <ul>
+              <li>
+                <h4 class='inline-header'>${event.eventName}</h4>
+              </li>
+              <li>
+                <span class='eventLocation'>${event.location}</span>
+                <span class='eventTime pull-right'>&#160;${event.time}</span>
+                <span class='eventDate pull-right'>${event.date}</span>
+              </li>
+              <li>
+                <span class='eventDescription'>${event.description}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <span class='peopleInterested'>${event.peopleInterested} people interested</span>
+          </div>
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
+              Event Details
+            </button>
+          </div>
+          <!--END OF MAIN EVENT LISTING VIEW-->
+          <!-- START MODAL EVENT LISTING VIEW-->
+          <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row event">
+                    <div class="col-md-10 col-md-offset-1">
+                      <!-- begin event internal row -->
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <div class="thumbnail">
+                            <img src="${event.imageUrl}" class="responsive-img" alt="event image">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <p>${event.keywords}</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="row">
+                          <h2 class='inline-header'>${event.eventName}</h2>
+                          <p>${event.location}</p>
+                          <p><b>${event.date}</b> ${event.time}</p>
+                          <h4>Description</h4>
+                          <p>${event.description}</p>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <span class="pull-left">Contact: <a href="mailto:${event.posterEmail}">${event.posterEmail}</a></span>
+                          </div>
+                          <div class="col-lg-6">
+                            <a href="${event.externalResource}" target="_blank">
+                              <button class="btn btn-primary pull-right">Event Link</button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-xs-12">
-                      <button type="button" class="btn btn-xs btn-info pull-right" id="moreEventInfo" data-toggle="modal" data-target="#moreEventInfoModal">
-                        Event Details
-                      </button>
-                      <!-- Modal -->
-                      <div class="modal fade" id="moreEventInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreEventInfoModalLabel">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                              <form class="form-horizontal">
-                              <div class="row event">
-                                <div class="col-md-10 col-md-offset-1">
-                                  <!-- begin event internal row -->
-                                  <div class="col-lg-8">
-                                    <div class="row">
-                                      <div class="thumbnail event-art">
-                                        <img src="${event.imageUrl}" class="responsive-img" alt="event image">
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <p>${event.keywords}</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-12">
-                                    <div class="row">
-                                      <h2 class='inline-header'>${event.eventName}</h2>
-                                      <p>${event.location}</p>
-                                      <p><b>${event.date}</b> ${event.time}</p>
-                                      <h4>Description</h4>
-                                      <p>${event.description}</p>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-lg-6">
-                                        <span class="pull-left">Contact: <a href="mailto:${event.posterEmail}">${event.posterEmail}</a></span>
-                                      </div>
-                                      <div class="col-lg-6">
-                                        <a href="${event.externalResource}" target="_blank">
-                                          <button class="btn btn-primary pull-right">Event Link</button>
-                                        </a>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                <!-- end of event internal row -->
+                  </div>
                 </div>
               </div>
             </div>
-        <!-- end one event -->
+          </div>
+          <!--CLOSES MODAL EVENT VIEW-->
+        </div>
+      </div>
+    </div>
+    <!--CLOSES MAIN EVENT VIEW-->
   `);
   $('.eventContainer').prepend(eventHtml);
 }
 
 function renderSearchResults(successJson) {
-  console.log('IN RENDER SEARCH RESULTS', successJson.length);
   $('.eventContainer').empty();
   if (successJson.length === 0) {
     noSearchResults();
@@ -204,7 +210,6 @@ function renderSearchResults(successJson) {
 } //closes renderSearchResults function
 
 function ajaxKeywordSearch() {
-  console.log('IN AJAX SEARCH FUNCTION');
   var keywordSearchData = $searchForm.serialize();
   var endpoint = '/api/searchKeyword';
   $.ajax({
@@ -229,7 +234,6 @@ function handleNewEventSubmit(e) {
   var $desc = $newEventModal.find('#eventDescription');
   var $eventTime= $newEventModal.find('#eventTime');
   var $tags= myTags;
-  console.log("tags are ", myTags);
   // get data from modal fields
   var dataToPost = {
     eventName: $name.val(),
@@ -243,10 +247,7 @@ function handleNewEventSubmit(e) {
     keywords: myTags,
   };
 
-  console.log('retrieved new event!', dataToPost);
-
     $.post('/api/events', dataToPost, function(data) {
-      console.log('received data from post to /events:', dataToPost);
       //clear the form!
       $name.val('');
       $eventLocation.val('');

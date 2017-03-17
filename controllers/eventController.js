@@ -24,7 +24,6 @@ function show(req, res) {
 // GET /api/searchKeyword
 function searchKeyword(req, res) {
   var searchQuery = req.query.keyword;
-  console.log("WE ARE IN SEARCHKEYWORD FUNCTION", searchQuery);
   db.Event.find({keywords: searchQuery}, function(err, matchedEvents){
     if (err)
       console.log('SEARCH FUNCTION ERROR: ', err)
@@ -37,7 +36,6 @@ function searchKeyword(req, res) {
 
 function searchDate(req, res) {
   var searchQuery = req._parsedOriginalUrl.query;
-  console.log("WE ARE IN SEARCHDATE FUNCTION", searchQuery);
   db.Event.find({date: searchQuery}, function(err, matchedEvents){
     if (err) {
       console.log('SEARCH FUNCTION ERROR: ', err)
@@ -53,7 +51,6 @@ function create(req, res) {
   var newEvent = new db.Event(req.body);
   db.Event.create(newEvent, function(err, createdEvent) {
     if(err){return console.log(err);}
-    console.log('made new event: ', createdEvent);
     res.json(createdEvent);
   });
 }//closes create function
@@ -85,7 +82,6 @@ function destroy(req, res) {
     } //closes else statement
   });//closes findByIdAndRemove
 } //closes destroy function
-
 
 module.exports = {
   index: index,

@@ -1,154 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tech events in your area</title>
-  <!--LINKS-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="../scripts/bootstrap-datepicker.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../scripts/app.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
-  <link rel="shortcut icon" href="">
-  <link rel="stylesheet" href="../styles/styles.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="../styles/datepicker.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-  <div id="eek">
-  <header class="tippytop">
-    <h1 class="mainHeader">TechSpace</h1>
-  </header>
-  <!--NAV BAR-->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="col-lg-6">
-        <!-- SEARCH FORM AND SUBMIT  -->
-        <form class="navbar-form" role="search">
-          <div class="form-group ui-widget searchHolder">
-            <input type="text" class="form-control" id="eventSearchForm" name="keyword" placeholder="Type a keyword..." required>
-            <button type="submit" id="eventSearchButton" class="btn btn-default">Search</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-6">
-        <div class="row">
-          <!--button to trigger create new event modal-->
-          <button type="button" id="createNewEventBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEventModal">
-            Create Event
-          </button>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <legend class="modal-title" id="newEventModalLabel">Create a New Event</legend>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech events in your area</title>
+    <!--LINKS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../scripts/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5kYxgepCMW1rcXGTW5jEYuxQQnR2gvFA&callback=initMap"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../styles/datepicker.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="eek">
+      <header class="tippytop">
+        <img src="/images/Header.png" id="headerImg" class="img-fluid" alt="TechSpace Header" title="TechSpace Header">
+        </br>
+      </header>
+      <!--NAV BAR-->
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="col-lg-6">
+          <!-- SEARCH FORM AND SUBMIT  -->
+          <form class="navbar-form" role="search">
+            <div class="form-group ui-widget searchHolder">
+              <input type="text" class="form-control" id="eventSearchForm" name="keyword" placeholder="Type a keyword..." required>
+              <button type="submit" id="eventSearchButton" class="btn btn-default">Search</button>
             </div>
-            <div class="modal-body">
-              <form class="form-horizontal" id="newEventForm">
-                <fieldset>
-                  <!-- Text input for Event Name-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="name">Event Name</label>
-                    <div class="col-md-6">
-                      <input id="name" name="eventName" type="text" placeholder="Event Name" class="form-control input-md" required="">
-                    </div>
-                  </div>
-                  <!-- Text input for location-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="eventLocation">Location</label>
-                    <div class="col-md-6">
-                      <input id="eventLocation" name="location" type="text" placeholder="General Assembly" class="form-control input-md" required>
-                    </div>
-                  </div>
-                  <!-- Text input for poster's email-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="posterEmail">Your email address</label>
-                    <div class="col-md-6">
-                      <input id="posterEmail" name="posterEmail" type="text" placeholder="Email" class="form-control input-md" required>
-                    </div>
-                  </div>
-                  <!-- Text input for date-->
-                  <div class="form-group">
-                    <div class="row">
-                      <label for="eventDate" class="col-md-4 control-label">Event Date and Time</label>
-                      <div class="col-md-4">
-                        <input class="form-control" type="date" name="date" id="eventDate" required>
-                      </div>
-                  <!-- Text input for time-->
-                      <div class="col-md-4">
-                        <input id="eventTime" name="time" type="text" placeholder="4:00PM" class="form-control input-md" required>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Text input for time-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="externalResource">External Links for Event</label>
-                    <div class="col-md-4">
-                      <input id="externalResource" name="externalResource" type="text" placeholder="Optional" class="form-control input-md">
-                    </div>
-                  </div>
-                  <!-- text input for image URL-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="imageUrl">Event Image</label>
-                    <div class="col-md-6">
-                      <input id="imageUrl" name="imageUrl" type="text" class="form-control input-md">
-                    </div>
-                  </div>
-                    <!-- keyword tag autocomplete selector-->
-                    <div class="ui-widget">
-                      <label for="tags">Add searchable keywords: </label>
-                      <input type="text" id="tags" required>
-                    </div>
-                    <div class="form-group" id="tagsHere">
-                    </div>
-                  <!-- Textarea for description-->
-                  <div class="form-group col-lg-9">
-                    <label for="eventDescription">What is your event about?</label>
-                    <textarea class="form-control" id="eventDescription" name="description" rows="3" required></textarea>
-                  </div>
-                </fieldset>
-            <div class="form-group modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <button id="createEvent" name="singlebutton" class="btn btn-primary" data-dismiss="modal">Submit</button>
-            </div>
-          </div>
-        </form>
+          </form>
         </div>
-      </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <!--button to trigger create new event modal-->
+            <button type="button" id="createNewEventBtn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEventModal">
+              Create Event
+            </button>
+            <!-- STARTS MODAL -->
+            <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <legend class="modal-title" id="newEventModalLabel">Create a New Event</legend>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-horizontal" id="newEventForm">
+                      <fieldset>
+                        <!-- Text input for Event Name-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="name">Event Name</label>
+                          <div class="col-md-6">
+                            <input id="name" name="eventName" type="text" placeholder="Event Name" class="form-control input-md" required="">
+                          </div>
+                        </div>
+                        <!-- Text input for location-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="eventLocation">Location</label>
+                          <div class="col-md-6">
+                            <input id="eventLocation" name="location" type="text" placeholder="General Assembly" class="form-control input-md" required>
+                          </div>
+                        </div>
+                        <!-- Text input for poster's email-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="posterEmail">Your email address</label>
+                          <div class="col-md-6">
+                            <input id="posterEmail" name="posterEmail" type="text" placeholder="Email" class="form-control input-md" required>
+                          </div>
+                        </div>
+                        <!-- Text input for date-->
+                        <div class="form-group">
+                          <div class="row">
+                            <label for="eventDate" class="col-md-4 control-label">Event Date and Time</label>
+                            <div class="col-md-4">
+                              <input class="form-control" type="date" name="date" id="eventDate" required>
+                            </div>
+                            <!-- Text input for time-->
+                            <div class="col-md-4">
+                              <input id="eventTime" name="time" type="text" placeholder="4:00PM" class="form-control input-md" required>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Text input for time-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="externalResource">External Links for Event</label>
+                          <div class="col-md-4">
+                            <input id="externalResource" name="externalResource" type="text" placeholder="Optional" class="form-control input-md">
+                          </div>
+                        </div>
+                        <!-- text input for image URL-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="imageUrl">Event Image</label>
+                          <div class="col-md-6">
+                            <input id="imageUrl" name="imageUrl" type="text" class="form-control input-md">
+                          </div>
+                        </div>
+                          <!-- keyword tag autocomplete selector-->
+                        <div class="ui-widget">
+                          <label for="tags">Add searchable keywords: </label>
+                          <input type="text" id="tags" required>
+                        </div>
+                        <div class="form-group" id="tagsHere">
+                          <!--keywords appear here-->
+                        </div>
+                        <!-- Textarea for description-->
+                        <div class="form-group col-lg-9">
+                          <label for="eventDescription">What is your event about?</label>
+                          <textarea class="form-control" id="eventDescription" name="description" rows="3" required></textarea>
+                        </div>
+                      </fieldset>
+                      <div class="form-group modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button id="createEvent" name="singlebutton" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CLOSES MODAL-->
+          </div>
+        </div>
+      </nav>
     </div>
-
-
-    <!-- <div class="container"> -->
-      <div class="mainDisplay">
+  <!-- <div class="container"> -->
+  <div class="mainDisplay">
     <!-- EVENT BOXES -->
     <div class="col-lg-8 col-md-9 col-xs-12 eventContainer">
-      <!--event info displayed here-->
     </div>
+  </div>
     <!--SIDE BAR -->
-
-    <div class="col-lg-3 col-md-3 sideSpace">
-      <h4 class="text-center">Search Events by Date</h4>
-      <div id="datepickerBig"></div>
-      <br/>
-      <button class="btn btn-success center-block" id="dateSearch"><span class="glyphicon glyphicon-search"></span> Go!</button>
-      <br/>
+  <div class="col-lg-3 col-md-3 sideSpace">
+    <h4 class="text-center">Search Events by Date</h4>
+    <div id="datepickerBig">
+    </div>
+    <br/>
+    <button class="btn btn-success center-block" id="dateSearch"><span class="glyphicon glyphicon-search"></span>Go!</button>
+    <br/>
     <div id="map">
     </div>
-    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-</div>
-<div class="col-lg-12">
-  <footer class="text-center">&copy; TechSpace</footer>
-  <br>
-</div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search by location">
+  </div>
+  <div class="col-lg-12">
+    <footer class="text-center">&copy; TechSpace</footer>
+    <br>
+  </div>
 </body>
-
 </html>
