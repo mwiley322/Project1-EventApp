@@ -1,13 +1,13 @@
 # TechSpace
-###An event app for the tech community
+### An event app for the tech community
 --
-#User Stories
+# User Stories
 
-1. A browser can explore upcoming tech-related events.
+1. A browser can explore upcoming tech-related events on main page with event feed.
 2. A browser can post a new event.
-3. A browser can search through events by keyword and date.
+3. A browser can search through events by keyword with autocomplete search bar or by date with datepicker in aside.
 
-#Technologies
+# Technologies
 - Node.js
 - Express
 - Mongoose
@@ -16,13 +16,14 @@
 - JQuery
 - CSS
 - HTML
+- Add-ons: JQuery Autocomplete Search, Bootstrap Datepicker
 
 
-#MockUp
-![TechSpace MockUp](http://i.imgur.com/LvMku1N.png")
+# MockUp
+![TechSpace MockUp](http://i.imgur.com/LvMku1N.png)
 
 
-##Features to be added later
+## Features to be added later
 
 1. Sign up & login as a user
 2. Users can favorite events, comment, and ask questions
@@ -31,17 +32,15 @@
 5. Users can search by location
 6. Added CSS and HTML features
 
-##Inspiration
+## Inspiration
 Facebook's Event Page
 
-![Facebook Event Page](http://i.imgur.com/1kF6dtI.png")
+![Facebook Event Page](http://i.imgur.com/1kF6dtI.png)
 
 
-##Links
+## Links
 
 
 - [Trello Board](https://trello.com/b/A4SH14BO/techspace)
-
-- [Github] (https://github.com/mwiley322/Project1-EventApp)
 
 - Heroku coming soon...
